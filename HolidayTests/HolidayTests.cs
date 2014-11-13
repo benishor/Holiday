@@ -9,12 +9,7 @@ namespace HolidayTests
         [Test]
         public void usage()
         {
-            HolidayRequest request = new HolidayRequest(
-                "csaba.trucza@iquestgroup.com", 
-                "andrei.doibani@iquestgroup.com",
-                new DateTime(2014, 11, 11),
-                new DateTime(2014, 11, 12),
-                "vacation");
+            var request = CreateHolidayRequest();
 
             request.Approve();
         }
@@ -22,12 +17,7 @@ namespace HolidayTests
         [Test]
         public void submitted_request_sends_mail()
         {
-            HolidayRequest request = new HolidayRequest(
-                "csaba.trucza@iquestgroup.com",
-                "andrei.doibani@iquestgroup.com",
-                new DateTime(2014, 11, 11),
-                new DateTime(2014, 11, 12),
-                "vacation");
+            var request = CreateHolidayRequest();
 
             Assert.IsTrue(MailServer.DidSendMail());
         }
@@ -35,16 +25,21 @@ namespace HolidayTests
         [Test]
         public void approved_request_sends_mail()
         {
+            var request = CreateHolidayRequest();
+
+            Assert.IsTrue(MailServer.GetLastSentMail().From == "andrei.doibani@iquestgroup.com");
+        }
+
+        private static HolidayRequest CreateHolidayRequest()
+        {
             HolidayRequest request = new HolidayRequest(
                 "csaba.trucza@iquestgroup.com",
                 "andrei.doibani@iquestgroup.com",
                 new DateTime(2014, 11, 11),
                 new DateTime(2014, 11, 12),
                 "vacation");
-
-            Assert.IsTrue(MailServer.GetLastSentMail().From == "andrei.doibani@iquestgroup.com");
+            return request;
         }
-
     }
 
     public class MailServer
