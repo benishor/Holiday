@@ -26,7 +26,7 @@ namespace Holiday
 
         private static void SendMessage(string from, string to)
         {
-            Message message = new Message {From = @from, To = to};
+            Message message = new Message {From = from, To = to};
             message.Send();
         }
     }
