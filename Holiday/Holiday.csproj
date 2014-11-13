@@ -34,6 +34,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChannelLocator.cs" />
+    <Compile Include="HolidayRequest.cs" />
+    <Compile Include="IChannel.cs" />
+    <Compile Include="MailChannel.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

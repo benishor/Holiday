@@ -39,9 +39,16 @@
   <ItemGroup>
     <Compile Include="HolidayTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestChannel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Holiday\Holiday.csproj">
+      <Project>{8b2e5149-6d91-40d5-b4f2-39bc40874169}</Project>
+      <Name>Holiday</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
