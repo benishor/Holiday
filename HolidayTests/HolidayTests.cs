@@ -6,21 +6,21 @@ namespace HolidayTests
     [TestFixture]
     public class HolidayTests
     {
+        private HolidayRequest request;
         private const string employee = "csaba.trucza@iquestgroup.com";
         private const string manager = "andrei.doibani@iquestgroup.com";
 
         [Test]
         public void usage()
         {
-            var request = CreateHolidayRequest();
-
+            CreateHolidayRequest();
             request.Approve();
         }
 
         [Test]
         public void submitted_request_sends_mail()
         {
-            var request = CreateHolidayRequest();
+            CreateHolidayRequest();
 
             Assert.AreEqual(employee, MailServer.GetLastSentMail().From);
         }
@@ -28,22 +28,21 @@ namespace HolidayTests
         [Test]
         public void approved_request_sends_mail()
         {
-            var request = CreateHolidayRequest();
+            CreateHolidayRequest();
 
             request.Approve();
 
             Assert.AreEqual(manager, MailServer.GetLastSentMail().From );
         }
 
-        private static HolidayRequest CreateHolidayRequest()
+        private void CreateHolidayRequest()
         {
-            HolidayRequest request = new HolidayRequest(
+            request = new HolidayRequest(
                 employee,
                 manager,
                 new DateTime(2014, 11, 11),
                 new DateTime(2014, 11, 12),
-                "vacation");
-            return request;
+                "vacation");            
         }
     }
 
