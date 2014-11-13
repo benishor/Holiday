@@ -48,7 +48,7 @@ namespace HolidayTests
         }
     }
 
-    public class MailServer
+    public static class MailServer
     {
         private static Mail lastSentMail;
 
