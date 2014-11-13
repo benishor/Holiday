@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Management.Instrumentation;
 using NUnit.Framework;
 
 namespace HolidayTests
@@ -19,7 +20,7 @@ namespace HolidayTests
         {
             var request = CreateHolidayRequest();
 
-            Assert.IsTrue(MailServer.DidSendMail());
+            Assert.IsTrue(MailServer.GetLastSentMail().From == "csaba.trucza@iquestgroup.com");
         }
 
         [Test]
@@ -46,14 +47,16 @@ namespace HolidayTests
 
     public class MailServer
     {
-        public static bool DidSendMail()
-        {
-            return true;
-        }
+        private static Mail lastSentMail;
 
         public static Mail GetLastSentMail()
         {
-            return new Mail {From = "andrei.doibani@iquestgroup.com"};
+            return lastSentMail;
+        }
+
+        public static void Send(Mail mail)
+        {
+            lastSentMail = mail;
         }
     }
 
@@ -64,12 +67,30 @@ namespace HolidayTests
 
     public class HolidayRequest
     {
+        private readonly string employee;
+        private readonly string manager;
+
         public HolidayRequest(string employee, string manager, DateTime start, DateTime end, string type)
         {
+            this.employee = employee;
+            this.manager = manager;
+            Submit();
+        }
+
+        private void Submit()
+        {
+            SendMail(employee, manager);
+        }
+
+        private void SendMail(string from, string to)
+        {
+            Mail mail = new Mail {From =from};
+            MailServer.Send(mail);
         }
 
         public void Approve()
         {
+            SendMail(manager, "hr");
         }
     }
 }
