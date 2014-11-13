@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Management.Instrumentation;
 using NUnit.Framework;
 
 namespace HolidayTests
@@ -7,6 +6,9 @@ namespace HolidayTests
     [TestFixture]
     public class HolidayTests
     {
+        private const string employee = "csaba.trucza@iquestgroup.com";
+        private const string manager = "andrei.doibani@iquestgroup.com";
+
         [Test]
         public void usage()
         {
@@ -20,7 +22,7 @@ namespace HolidayTests
         {
             var request = CreateHolidayRequest();
 
-            Assert.IsTrue(MailServer.GetLastSentMail().From == "csaba.trucza@iquestgroup.com");
+            Assert.AreEqual(employee, MailServer.GetLastSentMail().From);
         }
 
         [Test]
@@ -30,14 +32,14 @@ namespace HolidayTests
 
             request.Approve();
 
-            Assert.IsTrue(MailServer.GetLastSentMail().From == "andrei.doibani@iquestgroup.com");
+            Assert.AreEqual(manager, MailServer.GetLastSentMail().From );
         }
 
         private static HolidayRequest CreateHolidayRequest()
         {
             HolidayRequest request = new HolidayRequest(
-                "csaba.trucza@iquestgroup.com",
-                "andrei.doibani@iquestgroup.com",
+                employee,
+                manager,
                 new DateTime(2014, 11, 11),
                 new DateTime(2014, 11, 12),
                 "vacation");
