@@ -56,7 +56,7 @@ namespace HolidayTests
 
         public static Mail GetLastSentMail()
         {
-            return new Mail() {From = "andrei.doibani@iquestgroup.com"};
+            return new Mail {From = "andrei.doibani@iquestgroup.com"};
         }
     }
 
