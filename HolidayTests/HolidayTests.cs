@@ -14,8 +14,8 @@ namespace HolidayTests
         [SetUp]
         public void SetUp()
         {
-            ChannelLocator.Channel = new Channel();
-            channel = ChannelLocator.Channel;
+            channel = new Channel();
+            ChannelLocator.Channel = channel;
         }
 
         [Test]
@@ -58,10 +58,15 @@ namespace HolidayTests
 
     public static class ChannelLocator
     {
-        public static Channel Channel;
+        public static IChannel Channel;
     }
 
-    public class Channel
+    public interface IChannel
+    {
+        void Send(Message message);
+    }
+
+    public class Channel : IChannel
     {
         private Message lastSentMessage;
 
