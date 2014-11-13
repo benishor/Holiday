@@ -67,6 +67,11 @@ namespace HolidayTests
     {
         public string From;
         public string To;
+
+        public void Send()
+        {
+            MailServer.Send(this);
+        }
     }
 
     public class HolidayRequest
@@ -86,15 +91,15 @@ namespace HolidayTests
             SendMail(employee, manager);
         }
 
-        private void SendMail(string from, string to)
-        {
-            Mail mail = new Mail {From = from, To = to};
-            MailServer.Send(mail);
-        }
-
         public void Approve()
         {
             SendMail(manager, "hr");
+        }
+
+        private void SendMail(string from, string to)
+        {
+            Mail mail = new Mail {From = @from, To = to};
+            mail.Send();
         }
     }
 }
