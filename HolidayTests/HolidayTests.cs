@@ -27,6 +27,8 @@ namespace HolidayTests
         {
             var request = CreateHolidayRequest();
 
+            request.Approve();
+
             Assert.IsTrue(MailServer.GetLastSentMail().From == "andrei.doibani@iquestgroup.com");
         }
 
