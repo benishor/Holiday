@@ -7,8 +7,16 @@ namespace HolidayTests
     public class HolidayTests
     {
         private HolidayRequest request;
+        private Channel channel;
         private const string employee = "csaba.trucza@iquestgroup.com";
         private const string manager = "andrei.doibani@iquestgroup.com";
+
+        [SetUp]
+        public void SetUp()
+        {
+            ChannelLocator.Channel = new Channel();
+            channel = ChannelLocator.Channel;
+        }
 
         [Test]
         public void usage()
@@ -22,8 +30,8 @@ namespace HolidayTests
         {
             CreateHolidayRequest();
 
-            Assert.AreEqual(employee, Channel.GetLastSentMail().From);
-            Assert.AreEqual(manager, Channel.GetLastSentMail().To);
+            Assert.AreEqual(employee, channel.GetLastSentMail().From);
+            Assert.AreEqual(manager, channel.GetLastSentMail().To);
         }
 
         [Test]
@@ -33,8 +41,8 @@ namespace HolidayTests
 
             request.Approve();
 
-            Assert.AreEqual(manager, Channel.GetLastSentMail().From );
-            Assert.AreEqual("hr", Channel.GetLastSentMail().To);
+            Assert.AreEqual(manager, channel.GetLastSentMail().From );
+            Assert.AreEqual("hr", channel.GetLastSentMail().To);
         }
 
         private void CreateHolidayRequest()
@@ -48,16 +56,21 @@ namespace HolidayTests
         }
     }
 
-    public static class Channel
+    public static class ChannelLocator
     {
-        private static Message lastSentMessage;
+        public static Channel Channel;
+    }
 
-        public static Message GetLastSentMail()
+    public class Channel
+    {
+        private Message lastSentMessage;
+
+        public Message GetLastSentMail()
         {
             return lastSentMessage;
         }
 
-        public static void Send(Message message)
+        public void Send(Message message)
         {
             lastSentMessage = message;
         }
@@ -71,7 +84,7 @@ namespace HolidayTests
 
         public void Send()
         {
-            Channel.Send(this);
+            ChannelLocator.Channel.Send(this);
         }
     }
 
