@@ -22,8 +22,8 @@ namespace HolidayTests
         {
             CreateHolidayRequest();
 
-            Assert.AreEqual(employee, MailServer.GetLastSentMail().From);
-            Assert.AreEqual(manager, MailServer.GetLastSentMail().To);
+            Assert.AreEqual(employee, Channel.GetLastSentMail().From);
+            Assert.AreEqual(manager, Channel.GetLastSentMail().To);
         }
 
         [Test]
@@ -33,8 +33,8 @@ namespace HolidayTests
 
             request.Approve();
 
-            Assert.AreEqual(manager, MailServer.GetLastSentMail().From );
-            Assert.AreEqual("hr", MailServer.GetLastSentMail().To);
+            Assert.AreEqual(manager, Channel.GetLastSentMail().From );
+            Assert.AreEqual("hr", Channel.GetLastSentMail().To);
         }
 
         private void CreateHolidayRequest()
@@ -48,7 +48,7 @@ namespace HolidayTests
         }
     }
 
-    public static class MailServer
+    public static class Channel
     {
         private static Message lastSentMessage;
 
@@ -63,6 +63,7 @@ namespace HolidayTests
         }
     }
 
+
     public class Message
     {
         public string From;
@@ -70,7 +71,7 @@ namespace HolidayTests
 
         public void Send()
         {
-            MailServer.Send(this);
+            Channel.Send(this);
         }
     }
 
