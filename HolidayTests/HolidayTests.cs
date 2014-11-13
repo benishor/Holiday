@@ -50,20 +50,20 @@ namespace HolidayTests
 
     public static class MailServer
     {
-        private static Mail lastSentMail;
+        private static Message lastSentMessage;
 
-        public static Mail GetLastSentMail()
+        public static Message GetLastSentMail()
         {
-            return lastSentMail;
+            return lastSentMessage;
         }
 
-        public static void Send(Mail mail)
+        public static void Send(Message message)
         {
-            lastSentMail = mail;
+            lastSentMessage = message;
         }
     }
 
-    public class Mail
+    public class Message
     {
         public string From;
         public string To;
@@ -88,18 +88,18 @@ namespace HolidayTests
 
         private void Submit()
         {
-            SendMail(employee, manager);
+            SendMessage(employee, manager);
         }
 
         public void Approve()
         {
-            SendMail(manager, "hr");
+            SendMessage(manager, "hr");
         }
 
-        private void SendMail(string from, string to)
+        private static void SendMessage(string from, string to)
         {
-            Mail mail = new Mail {From = @from, To = to};
-            mail.Send();
+            Message message = new Message {From = @from, To = to};
+            message.Send();
         }
     }
 }
