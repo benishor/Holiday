@@ -23,6 +23,7 @@ namespace HolidayTests
             CreateHolidayRequest();
 
             Assert.AreEqual(employee, MailServer.GetLastSentMail().From);
+            Assert.AreEqual(manager, MailServer.GetLastSentMail().To);
         }
 
         [Test]
@@ -33,6 +34,7 @@ namespace HolidayTests
             request.Approve();
 
             Assert.AreEqual(manager, MailServer.GetLastSentMail().From );
+            Assert.AreEqual("hr", MailServer.GetLastSentMail().To);
         }
 
         private void CreateHolidayRequest()
@@ -64,6 +66,7 @@ namespace HolidayTests
     public class Mail
     {
         public string From;
+        public string To;
     }
 
     public class HolidayRequest
@@ -85,7 +88,7 @@ namespace HolidayTests
 
         private void SendMail(string from, string to)
         {
-            Mail mail = new Mail {From =from};
+            Mail mail = new Mail {From = from, To = to};
             MailServer.Send(mail);
         }
 
