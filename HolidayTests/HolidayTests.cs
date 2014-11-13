@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mail;
 using NUnit.Framework;
 
 namespace HolidayTests
@@ -7,15 +8,15 @@ namespace HolidayTests
     public class HolidayTests
     {
         private HolidayRequest request;
-        private Channel channel;
+        private TestChannel testChannel;
         private const string employee = "csaba.trucza@iquestgroup.com";
         private const string manager = "andrei.doibani@iquestgroup.com";
 
         [SetUp]
         public void SetUp()
         {
-            channel = new Channel();
-            ChannelLocator.Channel = channel;
+            testChannel = new TestChannel();
+            ChannelLocator.Channel = testChannel;
         }
 
         [Test]
@@ -30,8 +31,8 @@ namespace HolidayTests
         {
             CreateHolidayRequest();
 
-            Assert.AreEqual(employee, channel.GetLastSentMail().From);
-            Assert.AreEqual(manager, channel.GetLastSentMail().To);
+            Assert.AreEqual(employee, testChannel.GetLastSentMail().From);
+            Assert.AreEqual(manager, testChannel.GetLastSentMail().To);
         }
 
         [Test]
@@ -41,8 +42,8 @@ namespace HolidayTests
 
             request.Approve();
 
-            Assert.AreEqual(manager, channel.GetLastSentMail().From );
-            Assert.AreEqual("hr", channel.GetLastSentMail().To);
+            Assert.AreEqual(manager, testChannel.GetLastSentMail().From );
+            Assert.AreEqual("hr", testChannel.GetLastSentMail().To);
         }
 
         private void CreateHolidayRequest()
@@ -66,7 +67,20 @@ namespace HolidayTests
         void Send(Message message);
     }
 
-    public class Channel : IChannel
+    public class MailChannel : IChannel
+    {
+        public void Send(Message message)
+        {
+            SmtpClient c = new SmtpClient("host");
+            c.Send(new MailMessage(
+                message.From,
+                message.To,
+                "",
+                ""
+            ));
+        }
+    }
+    public class TestChannel : IChannel
     {
         private Message lastSentMessage;
 
