@@ -4,12 +4,12 @@ namespace Holiday
 {
     public class HolidayRequest
     {
-        private readonly string employee;
-        private readonly string manager;
+        private readonly Employee employee;
+        private readonly Employee manager;
         private readonly DateTime start;
         private readonly DateTime end;
 
-        public HolidayRequest(string employee, string manager, DateTime start, DateTime end, string type)
+        public HolidayRequest(Employee employee, Employee manager, DateTime start, DateTime end, string type)
         {
             this.employee = employee;
             this.manager = manager;

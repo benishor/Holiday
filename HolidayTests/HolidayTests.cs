@@ -48,17 +48,11 @@ namespace HolidayTests
         private void CreateHolidayRequest()
         {
             request = new HolidayRequest(
-                employee.Email,
-                manager.Email,
+                employee,
+                manager,
                 new DateTime(2014, 11, 11),
                 new DateTime(2014, 11, 12),
                 "vacation");            
         }
-    }
-
-    internal class Employee
-    {
-        public string Name;
-        public string Email;
     }
 }

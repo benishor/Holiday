@@ -12,28 +12,28 @@ namespace Holiday
         private const string SubmissionMessageSubject = "Cerere de concediu";
         private const string SubmissionMessageBody = "Subsemnatul {0}, angajat iQuest va rog a-mi aproba cererea de concediu de odihna pe perioada {1} - {2}.";
 
-        public static Message SubmissionMessage(string employee, string manager, DateTime start, DateTime end)
+        public static Message SubmissionMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
             return new Message
             {
-                from = employee,
-                to = manager,
+                from = employee.Email,
+                to = manager.Email,
                 subject = SubmissionMessageSubject,
-                body = string.Format(SubmissionMessageBody, employee, start.ToShortDateString(), end.ToShortDateString())
+                body = string.Format(SubmissionMessageBody, employee.Name, start.ToShortDateString(), end.ToShortDateString())
             };
         }
 
         private const string ApprovalMessageSubject = "Cerere de concediu aprobata";
         private const string ApprovalMessageBody = "Subsemnatul {0} aprob cererea de concediu de odihna pe perioada {1} - {2} pentru {3}.";
 
-        public static Message ApprovalMessage(string employee, string manager, DateTime start, DateTime end)
+        public static Message ApprovalMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
             return new Message
             {
-                from = manager,
+                from = manager.Email,
                 to = "hr",
                 subject = ApprovalMessageSubject,
-                body = string.Format(ApprovalMessageBody, manager, employee, start.ToShortDateString(), end.ToShortDateString())
+                body = string.Format(ApprovalMessageBody, manager.Name, employee.Name, start.ToShortDateString(), end.ToShortDateString())
             };
         }
 
