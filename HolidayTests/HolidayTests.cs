@@ -33,6 +33,7 @@ namespace HolidayTests
             CreateHolidayRequest();
             Assert.IsTrue(testChannel.LastMessageFrom(employee.Email));
             Assert.IsTrue(testChannel.LastMessageTo(manager.Email));
+            Assert.IsTrue(testChannel.LastMessageCC(Employee.HR().Email));
         }
 
         [Test]
@@ -43,6 +44,7 @@ namespace HolidayTests
             request.Approve();
             Assert.IsTrue(testChannel.LastMessageFrom(manager.Email));
             Assert.IsTrue(testChannel.LastMessageTo(Employee.HR().Email));
+            Assert.IsTrue(testChannel.LastMessageCC(employee.Email));
         }
 
         [Test]
@@ -53,6 +55,7 @@ namespace HolidayTests
             request.Reject();
             Assert.IsTrue(testChannel.LastMessageFrom(manager.Email));
             Assert.IsTrue(testChannel.LastMessageTo(employee.Email));
+            Assert.IsTrue(testChannel.LastMessageCC(Employee.HR().Email));
         }
 
         private void CreateHolidayRequest()

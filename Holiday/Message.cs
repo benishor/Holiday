@@ -6,6 +6,7 @@ namespace Holiday
     {
         private string from;
         private string to;
+        private string cc;
         private string subject;
         private string body;
 
@@ -18,6 +19,7 @@ namespace Holiday
             {
                 from = employee.Email,
                 to = manager.Email,
+                cc = Employee.HR().Email,
                 subject = submissionMessageSubject,
                 body = string.Format(submissionMessageBody, employee.Name, start.ToShortDateString(), end.ToShortDateString())
             };
@@ -32,6 +34,7 @@ namespace Holiday
             {
                 from = manager.Email,
                 to = Employee.HR().Email,
+                cc = employee.Email,
                 subject = approvalMessageSubject,
                 body = string.Format(approvalMessageBody, manager.Name, employee.Name, start.ToShortDateString(), end.ToShortDateString())
             };
@@ -45,6 +48,7 @@ namespace Holiday
             {
                 from = manager.Email,
                 to = employee.Email,
+                cc = Employee.HR().Email,
                 subject = rejectionMessageSubject,
                 body = string.Format(rejectionMessageBody, manager.Name, employee.Name, start.ToShortDateString(), end.ToShortDateString())
             };
@@ -52,7 +56,7 @@ namespace Holiday
 
         public void Send()
         {
-            ChannelLocator.Channel.Send(from, to, subject, body);
+            ChannelLocator.Channel.Send(from, to, cc, subject, body);
         }
     }
 

@@ -2,6 +2,6 @@ namespace Holiday
 {
     public interface IChannel
     {
-        void Send(string from, string to, string subject, string body);
+        void Send(string from, string to, string cc, string subject, string body);
     }
 }
