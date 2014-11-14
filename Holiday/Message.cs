@@ -31,7 +31,7 @@ namespace Holiday
             return new Message
             {
                 from = manager.Email,
-                to = "hr",
+                to = Employee.HR().Email,
                 subject = ApprovalMessageSubject,
                 body = string.Format(ApprovalMessageBody, manager.Name, employee.Name, start.ToShortDateString(), end.ToShortDateString())
             };

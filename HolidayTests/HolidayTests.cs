@@ -42,7 +42,7 @@ namespace HolidayTests
 
             request.Approve();
             Assert.IsTrue(testChannel.LastMessageFrom(manager.Email));
-            Assert.IsTrue(testChannel.LastMessageTo("hr"));
+            Assert.IsTrue(testChannel.LastMessageTo(Employee.HR().Email));
         }
 
         private void CreateHolidayRequest()
