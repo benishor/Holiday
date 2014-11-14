@@ -4,6 +4,7 @@ namespace Holiday
     {
         public string From;
         public string To;
+        public string Subject;
 
         public void Send()
         {

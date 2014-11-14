@@ -34,6 +34,7 @@ namespace HolidayTests
             var lastMessage = testChannel.GetLastMessage();
             Assert.AreEqual(employee, lastMessage.From);
             Assert.AreEqual(manager, lastMessage.To);
+            Assert.AreEqual("New holiday request", lastMessage.Subject);
         }
 
         [Test]
@@ -46,6 +47,7 @@ namespace HolidayTests
             var lastMessage = testChannel.GetLastMessage();
             Assert.AreEqual(manager, lastMessage.From );
             Assert.AreEqual("hr", lastMessage.To);
+            Assert.AreEqual("Holiday request approved", lastMessage.Subject);
         }
 
         private void CreateHolidayRequest()

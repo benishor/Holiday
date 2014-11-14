@@ -16,17 +16,17 @@ namespace Holiday
 
         private void Submit()
         {
-            SendMessage(employee, manager);
+            SendMessage(employee, manager, "New holiday request");
         }
 
         public void Approve()
         {
-            SendMessage(manager, "hr");
+            SendMessage(manager, "hr", "Holiday request approved");
         }
 
-        private static void SendMessage(string from, string to)
+        private static void SendMessage(string from, string to, string subject)
         {
-            Message message = new Message {From = from, To = to};
+            Message message = new Message {From = from, To = to, Subject = subject};
             message.Send();
         }
     }
