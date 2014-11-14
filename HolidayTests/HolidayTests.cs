@@ -30,17 +30,8 @@ namespace HolidayTests
         public void submitted_request_sends_message()
         {
             CreateHolidayRequest();
-
-            var lastMessage = testChannel.GetLastMessage();
-            Assert.AreEqual(employee, lastMessage.From);
-            Assert.AreEqual(manager, lastMessage.To);
-            Assert.AreEqual("New holiday request", lastMessage.Subject);
-
-            var expectedBody =
-                string.Format(
-                    "Subsemnatul {0}, angajat iQuest va rog a-mi aproba cererea de concediu de odihna pe perioada {1} - {2}.",
-                    employee, new DateTime(2014, 11, 11).ToShortDateString(), new DateTime(2014, 11, 12).ToShortDateString());
-            Assert.AreEqual(expectedBody, lastMessage.Body);
+            Assert.IsTrue(testChannel.LastMessageFrom(employee));
+            Assert.IsTrue(testChannel.LastMessageTo(manager));
         }
 
         [Test]
@@ -49,15 +40,8 @@ namespace HolidayTests
             CreateHolidayRequest();
 
             request.Approve();
-
-            var lastMessage = testChannel.GetLastMessage();
-            Assert.AreEqual(manager, lastMessage.From );
-            Assert.AreEqual("hr", lastMessage.To);
-            Assert.AreEqual("Holiday request approved", lastMessage.Subject);
-
-            var expectedBody = string.Format("Subsemnatul {0} aprob cererea de concediu de odihna pe perioada {1} - {2} pentru {3}.",
-                manager, new DateTime(2014, 11, 11).ToShortDateString(), new DateTime(2014, 11, 12).ToShortDateString(), employee);
-            Assert.AreEqual(expectedBody, lastMessage.Body);
+            Assert.IsTrue(testChannel.LastMessageFrom(manager));
+            Assert.IsTrue(testChannel.LastMessageTo("hr"));
         }
 
         private void CreateHolidayRequest()

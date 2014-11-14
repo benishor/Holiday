@@ -4,15 +4,11 @@ namespace Holiday
 {
     public class MailChannel : IChannel
     {
-        public void Send(Message message)
+        public void Send(string from, string to, string subject, string body)
         {
+            var mailMessage = new MailMessage(from, to, subject, body);
             var smtpClient = new SmtpClient("host");
-            smtpClient.Send(new MailMessage(
-                message.From,
-                message.To,
-                "",
-                ""
-                ));
+            smtpClient.Send(mailMessage);
         }
 
     }
