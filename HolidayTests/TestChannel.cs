@@ -4,16 +4,16 @@ namespace HolidayTests
 {
     public class TestChannel : IChannel
     {
-        private Message lastSentMessage;
+        private Message lastMessage;
 
-        public Message GetLastSentMail()
+        public Message GetLastMessage()
         {
-            return lastSentMessage;
+            return lastMessage;
         }
 
         public void Send(Message message)
         {
-            lastSentMessage = message;
+            lastMessage = message;
         }
     }
 }

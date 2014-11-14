@@ -27,23 +27,25 @@ namespace HolidayTests
         }
 
         [Test]
-        public void submitted_request_sends_mail()
+        public void submitted_request_sends_message()
         {
             CreateHolidayRequest();
 
-            Assert.AreEqual(employee, testChannel.GetLastSentMail().From);
-            Assert.AreEqual(manager, testChannel.GetLastSentMail().To);
+            var lastMessage = testChannel.GetLastMessage();
+            Assert.AreEqual(employee, lastMessage.From);
+            Assert.AreEqual(manager, lastMessage.To);
         }
 
         [Test]
-        public void approved_request_sends_mail()
+        public void approved_request_sends_message()
         {
             CreateHolidayRequest();
 
             request.Approve();
 
-            Assert.AreEqual(manager, testChannel.GetLastSentMail().From );
-            Assert.AreEqual("hr", testChannel.GetLastSentMail().To);
+            var lastMessage = testChannel.GetLastMessage();
+            Assert.AreEqual(manager, lastMessage.From );
+            Assert.AreEqual("hr", lastMessage.To);
         }
 
         private void CreateHolidayRequest()
