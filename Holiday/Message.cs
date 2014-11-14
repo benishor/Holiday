@@ -2,17 +2,6 @@ using System;
 
 namespace Holiday
 {
-
-    public class Var
-    {
-        [ThreadStatic] private const int var = 42;
-
-        public void foo()
-        {
-            var var = Var.var;
-        }
-    }
-
     public class Message
     {
         private string from;
