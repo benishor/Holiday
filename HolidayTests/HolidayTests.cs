@@ -45,6 +45,16 @@ namespace HolidayTests
             Assert.IsTrue(testChannel.LastMessageTo(Employee.HR().Email));
         }
 
+        [Test]
+        public void rejected_request_sends_message()
+        {
+            CreateHolidayRequest();
+
+            request.Reject();
+            Assert.IsTrue(testChannel.LastMessageFrom(manager.Email));
+            Assert.IsTrue(testChannel.LastMessageTo(employee.Email));
+        }
+
         private void CreateHolidayRequest()
         {
             request = new HolidayRequest(

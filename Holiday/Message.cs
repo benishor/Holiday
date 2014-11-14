@@ -37,6 +37,19 @@ namespace Holiday
             };
         }
 
+        public static Message RejectionMessage(Employee employee, Employee manager, DateTime start, DateTime end)
+        {
+            const string rejectionMessageSubject = "Cerere de concediu rejectata";
+            const string rejectionMessageBody = "Subsemnatul {0} nu aprob cererea de concediu de odihna pe perioada {1} - {2} pentru {3}.";
+            return new Message
+            {
+                from = manager.Email,
+                to = employee.Email,
+                subject = rejectionMessageSubject,
+                body = string.Format(rejectionMessageBody, manager.Name, employee.Name, start.ToShortDateString(), end.ToShortDateString())
+            };
+        }
+
         public void Send()
         {
             ChannelLocator.Channel.Send(from, to, subject, body);

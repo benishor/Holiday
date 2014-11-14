@@ -29,5 +29,11 @@ namespace Holiday
             var message = Message.ApprovalMessage(employee, manager, start, end);
             message.Send();
         }
+
+        public void Reject()
+        {
+            var message = Message.RejectionMessage(employee, manager, start, end);
+            message.Send();
+        }
     }
 }
