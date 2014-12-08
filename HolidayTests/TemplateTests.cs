@@ -28,13 +28,38 @@ namespace HolidayTests
 
             Assert.AreEqual(value, actual);
         }
+
+        [Test]
+        public void Template_replaces_placeholders_with_parameters()
+        {
+            Template t = new Template();
+            t.SetParameter("EmployeeName", "Csaba Trucza");
+            t.BodyTemplate = "Hello {EmployeeName}!";
+
+            Assert.AreEqual("Hello Csaba Trucza!", t.Body);
+        }
     }
 
     public class Template
     {
         public string Subject = "";
-        public string Body = "";
-        private Dictionary<string, string> parameters = new Dictionary<string, string>(); 
+
+        public string Body
+        {
+            get
+            {
+                string result = BodyTemplate;
+
+                foreach (var parameter in parameters)
+                {
+                    result = result.Replace("{"+ parameter.Key + "}", parameter.Value);
+                }
+                return result;
+            }
+        }
+
+        private readonly Dictionary<string, string> parameters = new Dictionary<string, string>();
+        public string BodyTemplate = "";
 
         public void SetParameter(string name, string value)
         {
