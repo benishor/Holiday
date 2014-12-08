@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace HolidayTests
 {
@@ -17,9 +18,15 @@ namespace HolidayTests
         [Test]
         public void Template_has_parameters()
         {
+            const string name = "EmployeeName";
+            const string value = "Csaba Trucza";
+
             Template t = new Template();
-            t.SetParameter("EmployeeName", "Csaba Trucza");
-            Assert.AreEqual("Csaba Trucza", t.GetParameter("EmployeeName"));
+            t.SetParameter(name, value);
+
+            var actual = t.GetParameter(name);
+
+            Assert.AreEqual(value, actual);
         }
     }
 
@@ -27,15 +34,16 @@ namespace HolidayTests
     {
         public string Subject = "";
         public string Body = "";
+        private Dictionary<string, string> parameters = new Dictionary<string, string>(); 
 
         public void SetParameter(string name, string value)
         {
-            
+            parameters[name] = value;
         }
 
         public string GetParameter(string name)
         {
-            return "Csaba Trucza";
+            return parameters[name];
         }
     }
 }
