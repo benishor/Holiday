@@ -12,20 +12,15 @@ namespace Holiday
 
         public static Message SubmissionMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
-            Template t = new Template();
-            t.Subject = Template.submissionMessageSubject;
-            t.BodyTemplate = Template.submissionMessageBody;
-            t.SetParameter("EmployeeName", employee.Name);
-            t.SetParameter("Start", start.ToShortDateString());
-            t.SetParameter("End", end.ToShortDateString());
+            var template = new SubmissionMessageTemplate(employee.Name, start.ToShortDateString(), end.ToShortDateString());
 
             return new Message
             {
                 from = employee.Email,
                 to = manager.Email,
                 cc = Employee.HR().Email,
-                subject = t.Subject,
-                body = t.Body
+                subject = template.Subject,
+                body = template.Body
             };
         }
 
@@ -33,13 +28,7 @@ namespace Holiday
         public static Message ApprovalMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
 
-            Template t = new Template();
-            t.Subject = Template.approvalMessageSubject;
-            t.BodyTemplate = Template.approvalMessageBody;
-            t.SetParameter("EmployeeName", employee.Name);
-            t.SetParameter("ManagerName", manager.Name);
-            t.SetParameter("Start", start.ToShortDateString());
-            t.SetParameter("End", end.ToShortDateString());
+            Template t = new ApprovalMessageTemplate(employee.Name, manager.Name, start.ToShortDateString(), end.ToShortDateString());
 
             return new Message
             {
@@ -53,13 +42,9 @@ namespace Holiday
 
         public static Message RejectionMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
-            Template t = new Template();
-            t.Subject = Template.rejectionMessageSubject;
-            t.BodyTemplate = Template.rejectionMessageBody;
-            t.SetParameter("EmployeeName", employee.Name);
-            t.SetParameter("ManagerName", manager.Name);
-            t.SetParameter("Start", start.ToShortDateString());
-            t.SetParameter("End", end.ToShortDateString());
+            var t = new RejectionMessageTemplate(employee.Name, manager.Name, start.ToShortDateString(), end.ToShortDateString());
+
+
 
             return new Message
             {
@@ -76,5 +61,4 @@ namespace Holiday
             ChannelLocator.Channel.Send(from, to, cc, subject, body);
         }
     }
-
 }
