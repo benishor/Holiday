@@ -15,13 +15,13 @@ namespace Holiday
             var template = new SubmissionMessageTemplate(employee.Name, start.ToShortDateString(), end.ToShortDateString());
 
             return new Message
-            {
-                from = employee.Email,
-                to = manager.Email,
-                cc = Employee.HR().Email,
-                subject = template.Subject,
-                body = template.Body
-            };
+                {
+                    from = employee.Email,
+                    to = manager.Email,
+                    cc = Employee.HR().Email,
+                    subject = template.Subject,
+                    body = template.Body
+                };
         }
 
 
@@ -30,13 +30,13 @@ namespace Holiday
             Template t = new ApprovalMessageTemplate(employee.Name, manager.Name, start.ToShortDateString(), end.ToShortDateString());
 
             return new Message
-            {
-                from = manager.Email,
-                to = Employee.HR().Email,
-                cc = employee.Email,
-                subject = t.Subject,
-                body = t.Body
-            };
+                {
+                    from = manager.Email,
+                    to = Employee.HR().Email,
+                    cc = employee.Email,
+                    subject = t.Subject,
+                    body = t.Body
+                };
         }
 
         public static Message RejectionMessage(Employee employee, Employee manager, DateTime start, DateTime end)
@@ -44,13 +44,13 @@ namespace Holiday
             var t = new RejectionMessageTemplate(employee.Name, manager.Name, start.ToShortDateString(), end.ToShortDateString());
 
             return new Message
-            {
-                from = manager.Email,
-                to = employee.Email,
-                cc = Employee.HR().Email,
-                subject = t.Subject,
-                body = t.Body
-            };
+                {
+                    from = manager.Email,
+                    to = employee.Email,
+                    cc = Employee.HR().Email,
+                    subject = t.Subject,
+                    body = t.Body
+                };
         }
 
         public void Send()
