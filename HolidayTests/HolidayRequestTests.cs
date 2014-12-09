@@ -30,9 +30,9 @@ namespace HolidayTests
         public void submitted_request_sends_message()
         {
             CreateHolidayRequest();
-            Assert.IsTrue(testChannel.LastMessageFrom(employee.Email));
-            Assert.IsTrue(testChannel.LastMessageTo(manager.Email));
-            Assert.IsTrue(testChannel.LastMessageCC(Employee.HR().Email));
+            Assert.AreEqual(employee.Email, testChannel.LastFrom);
+            Assert.AreEqual(manager.Email, testChannel.LastTo);
+            Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);
         }
 
         [Test]
@@ -41,9 +41,9 @@ namespace HolidayTests
             CreateHolidayRequest();
 
             request.Approve();
-            Assert.IsTrue(testChannel.LastMessageFrom(manager.Email));
-            Assert.IsTrue(testChannel.LastMessageTo(Employee.HR().Email));
-            Assert.IsTrue(testChannel.LastMessageCC(employee.Email));
+            Assert.AreEqual(manager.Email, testChannel.LastFrom);
+            Assert.AreEqual(Employee.HR().Email, testChannel.LastTo);
+            Assert.AreEqual(employee.Email, testChannel.LastCC);
         }
 
         [Test]
@@ -52,9 +52,10 @@ namespace HolidayTests
             CreateHolidayRequest();
 
             request.Reject();
-            Assert.IsTrue(testChannel.LastMessageFrom(manager.Email));
-            Assert.IsTrue(testChannel.LastMessageTo(employee.Email));
-            Assert.IsTrue(testChannel.LastMessageCC(Employee.HR().Email));
+
+            Assert.AreEqual(manager.Email, testChannel.LastFrom);
+            Assert.AreEqual(employee.Email, testChannel.LastTo);
+            Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);
         }
 
         private void CreateHolidayRequest()
