@@ -34,18 +34,18 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApprovalMessageTemplate.cs" />
+    <Compile Include="MessageTemplates\ApprovalMessageTemplate.cs" />
     <Compile Include="ChannelLocator.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="HolidayRequest.cs" />
     <Compile Include="IChannel.cs" />
     <Compile Include="MailChannel.cs" />
     <Compile Include="Message.cs" />
-    <Compile Include="MessageTemplate.cs" />
+    <Compile Include="MessageTemplates\MessageTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RejectionMessageTemplate.cs" />
-    <Compile Include="SubmissionMessageTemplate.cs" />
-    <Compile Include="Template.cs" />
+    <Compile Include="MessageTemplates\RejectionMessageTemplate.cs" />
+    <Compile Include="MessageTemplates\SubmissionMessageTemplate.cs" />
+    <Compile Include="MessageTemplates\Template.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

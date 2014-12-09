@@ -1,4 +1,5 @@
 ﻿using Holiday;
+using Holiday.MessageTemplates;
 using NUnit.Framework;
 
 namespace HolidayTests

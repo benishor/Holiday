@@ -1,4 +1,4 @@
-namespace Holiday
+namespace Holiday.MessageTemplates
 {
     public class RejectionMessageTemplate: MessageTemplate
     {

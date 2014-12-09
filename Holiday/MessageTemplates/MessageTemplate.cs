@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Holiday
+namespace Holiday.MessageTemplates
 {
     public class MessageTemplate : Template
     {

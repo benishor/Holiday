@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Holiday
+namespace Holiday.MessageTemplates
 {
     public class Template
     {
