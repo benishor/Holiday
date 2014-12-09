@@ -41,6 +41,7 @@
     <Compile Include="IChannel.cs" />
     <Compile Include="MailChannel.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="MessageTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RejectionMessageTemplate.cs" />
     <Compile Include="SubmissionMessageTemplate.cs" />
