@@ -56,7 +56,6 @@ namespace Holiday
 
         private void FillMessage(Message message)
         {
-
             message.SetEmployee(employee);
             message.SetManager(manager);
             message.SetStart(start);
