@@ -79,7 +79,16 @@ namespace HolidayTests
             Assert.AreEqual(manager.Email, testChannel.LastFrom);
             Assert.AreEqual(employee.Email, testChannel.LastTo);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);
-            Assert.AreEqual("Cerere de concediu rejectata", testChannel.LastSubject);
+
+            Assert.AreEqual(Template.rejectionMessageSubject, testChannel.LastSubject);
+
+            string expectedBody = Template.rejectionMessageBody;
+            expectedBody = expectedBody.Replace("{EmployeeName}", employee.Name);
+            expectedBody = expectedBody.Replace("{Start}", start.ToShortDateString());
+            expectedBody = expectedBody.Replace("{End}", end.ToShortDateString());
+            expectedBody = expectedBody.Replace("{ManagerName}", manager.Name);
+
+            Assert.AreEqual(expectedBody, testChannel.LastBody);
         }
 
         private void CreateHolidayRequest()

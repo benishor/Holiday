@@ -10,6 +10,9 @@ namespace Holiday
         public const string approvalMessageSubject = "Cerere de concediu aprobata";
         public const string approvalMessageBody = "Subsemnatul {ManagerName} aprob cererea de concediu de odihna pe perioada {Start} - {End} pentru {EmployeeName}.";
 
+        public const string rejectionMessageSubject = "Cerere de concediu rejectata";
+        public const string rejectionMessageBody = "Subsemnatul {ManagerName} nu aprob cererea de concediu de odihna pe perioada {Start} - {End} pentru {EmployeeName}.";
+
         public string Subject = "";
 
         public string Body
