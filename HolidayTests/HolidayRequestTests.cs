@@ -33,6 +33,7 @@ namespace HolidayTests
             Assert.AreEqual(employee.Email, testChannel.LastFrom);
             Assert.AreEqual(manager.Email, testChannel.LastTo);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);
+            Assert.AreEqual("Cerere de concediu", testChannel.LastSubject);
         }
 
         [Test]
@@ -44,6 +45,7 @@ namespace HolidayTests
             Assert.AreEqual(manager.Email, testChannel.LastFrom);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastTo);
             Assert.AreEqual(employee.Email, testChannel.LastCC);
+            Assert.AreEqual("Cerere de concediu aprobata", testChannel.LastSubject);
         }
 
         [Test]
@@ -56,6 +58,7 @@ namespace HolidayTests
             Assert.AreEqual(manager.Email, testChannel.LastFrom);
             Assert.AreEqual(employee.Email, testChannel.LastTo);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);
+            Assert.AreEqual("Cerere de concediu rejectata", testChannel.LastSubject);
         }
 
         private void CreateHolidayRequest()
