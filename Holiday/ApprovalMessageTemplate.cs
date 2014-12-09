@@ -13,7 +13,6 @@ namespace Holiday
             SetParameter("ManagerName", managerName);
             SetParameter("Start", start);
             SetParameter("End", end);
-
         }
     }
 }
