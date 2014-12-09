@@ -6,13 +6,9 @@ namespace Holiday
     {
         public string Subject = "";
 
-        public MessageTemplate(string template, string employeeName, string managerName, string start, string end)
+        public MessageTemplate(string template)
             : base(template)
         {
-            //SetEmployeeName(employeeName);
-            //SetManagerName(managerName);
-            //SetStartDate(start);
-            //SetEndDate(end);
         }
 
         public void SetEmployeeName(string employeeName)

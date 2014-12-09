@@ -12,7 +12,7 @@ namespace Holiday
 
         public static Message SubmissionMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
-            var template = new SubmissionMessageTemplate(employee.Name, manager.Name, start.ToShortDateString(), end.ToShortDateString());
+            var template = new SubmissionMessageTemplate();
             template.SetEmployeeName(employee.Name);
             template.SetManagerName(manager.Name);
             template.SetStartDate(start);
@@ -31,7 +31,7 @@ namespace Holiday
 
         public static Message ApprovalMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
-            var template = new ApprovalMessageTemplate(employee.Name, manager.Name, start.ToShortDateString(), end.ToShortDateString());
+            var template = new ApprovalMessageTemplate();
             template.SetEmployeeName(employee.Name);
             template.SetManagerName(manager.Name);
             template.SetStartDate(start);
@@ -49,7 +49,7 @@ namespace Holiday
 
         public static Message RejectionMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
-            var template = new RejectionMessageTemplate(employee.Name, manager.Name, start.ToShortDateString(), end.ToShortDateString());
+            var template = new RejectionMessageTemplate();
             template.SetEmployeeName(employee.Name);
             template.SetManagerName(manager.Name);
             template.SetStartDate(start);
