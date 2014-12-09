@@ -36,14 +36,6 @@ namespace HolidayTests
             Assert.AreEqual(employee.Email, testChannel.LastFrom);
             Assert.AreEqual(manager.Email, testChannel.LastTo);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);
-
-            Assert.AreEqual(SubmissionMessageTemplate.submissionMessageSubject, testChannel.LastSubject);
-
-            string expectedBody = SubmissionMessageTemplate.submissionMessageBody;
-            expectedBody = expectedBody.Replace("{EmployeeName}", employee.Name);
-            expectedBody = expectedBody.Replace("{Start}", start.ToShortDateString());
-            expectedBody = expectedBody.Replace("{End}", end.ToShortDateString());
-            Assert.AreEqual(expectedBody, testChannel.LastBody);
         }
 
         [Test]
@@ -56,17 +48,6 @@ namespace HolidayTests
             Assert.AreEqual(manager.Email, testChannel.LastFrom);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastTo);
             Assert.AreEqual(employee.Email, testChannel.LastCC);
-
-            Assert.AreEqual(ApprovalMessageTemplate.approvalMessageSubject, testChannel.LastSubject);
-
-            string expectedBody = ApprovalMessageTemplate.approvalMessageBody;
-            expectedBody = expectedBody.Replace("{EmployeeName}", employee.Name);
-            expectedBody = expectedBody.Replace("{Start}", start.ToShortDateString());
-            expectedBody = expectedBody.Replace("{End}", end.ToShortDateString());
-            expectedBody = expectedBody.Replace("{ManagerName}", manager.Name);
-
-            Assert.AreEqual(expectedBody, testChannel.LastBody);
-
         }
 
         [Test]
@@ -79,16 +60,6 @@ namespace HolidayTests
             Assert.AreEqual(manager.Email, testChannel.LastFrom);
             Assert.AreEqual(employee.Email, testChannel.LastTo);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);
-
-            Assert.AreEqual(RejectionMessageTemplate.rejectionMessageSubject, testChannel.LastSubject);
-
-            string expectedBody = RejectionMessageTemplate.rejectionMessageBody;
-            expectedBody = expectedBody.Replace("{EmployeeName}", employee.Name);
-            expectedBody = expectedBody.Replace("{Start}", start.ToShortDateString());
-            expectedBody = expectedBody.Replace("{End}", end.ToShortDateString());
-            expectedBody = expectedBody.Replace("{ManagerName}", manager.Name);
-
-            Assert.AreEqual(expectedBody, testChannel.LastBody);
         }
 
         private void CreateHolidayRequest()

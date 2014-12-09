@@ -8,36 +8,36 @@ namespace Holiday
         public string To;
         public string CC;
 
-        private readonly MessageTemplate t;
+        private readonly MessageTemplate template;
 
         public Message(MessageTemplate template)
         {
-            t = template;
+            this.template = template;
         }
 
         public void SetEmployee(Employee employee)
         {
-            t.SetEmployeeName(employee.Name);
+            template.SetEmployeeName(employee.Name);
         }
 
         public void SetManager(Employee manager)
         {
-            t.SetManagerName(manager.Name);
+            template.SetManagerName(manager.Name);
         }
 
         public void SetStart(DateTime start)
         {
-            t.SetStartDate(start);
+            template.SetStartDate(start);
         }
 
         public void SetEnd(DateTime end)
         {
-            t.SetEndDate(end);
+            template.SetEndDate(end);
         }
 
         public void Send()
         {
-            ChannelLocator.Channel.Send(From, To, CC, t.Subject, t.Render());
+            ChannelLocator.Channel.Send(From, To, CC, template.Subject, template.Render());
         }
 
     }
