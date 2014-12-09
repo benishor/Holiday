@@ -37,7 +37,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HolidayTests.cs" />
+    <Compile Include="HolidayRequestTests.cs" />
     <Compile Include="TemplateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestChannel.cs" />
