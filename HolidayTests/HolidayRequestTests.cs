@@ -33,6 +33,9 @@ namespace HolidayTests
         public void submitted_request_sends_message()
         {
             CreateHolidayRequest();
+            
+            request.Submit();
+
             Assert.AreEqual(employee.Email, testChannel.LastFrom);
             Assert.AreEqual(manager.Email, testChannel.LastTo);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);

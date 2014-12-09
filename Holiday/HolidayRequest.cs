@@ -16,11 +16,9 @@ namespace Holiday
             this.manager = manager;
             this.start = start;
             this.end = end;
-
-            Submit();
         }
 
-        private void Submit()
+        public void Submit()
         {
             var message = CreateMessage(new SubmissionMessageTemplate());
 
