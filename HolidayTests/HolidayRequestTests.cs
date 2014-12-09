@@ -37,9 +37,9 @@ namespace HolidayTests
             Assert.AreEqual(manager.Email, testChannel.LastTo);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);
 
-            Assert.AreEqual(Template.submissionMessageSubject, testChannel.LastSubject);
+            Assert.AreEqual(SubmissionMessageTemplate.submissionMessageSubject, testChannel.LastSubject);
 
-            string expectedBody = Template.submissionMessageBody;
+            string expectedBody = SubmissionMessageTemplate.submissionMessageBody;
             expectedBody = expectedBody.Replace("{EmployeeName}", employee.Name);
             expectedBody = expectedBody.Replace("{Start}", start.ToShortDateString());
             expectedBody = expectedBody.Replace("{End}", end.ToShortDateString());
@@ -57,9 +57,9 @@ namespace HolidayTests
             Assert.AreEqual(Employee.HR().Email, testChannel.LastTo);
             Assert.AreEqual(employee.Email, testChannel.LastCC);
 
-            Assert.AreEqual(Template.approvalMessageSubject, testChannel.LastSubject);
+            Assert.AreEqual(ApprovalMessageTemplate.approvalMessageSubject, testChannel.LastSubject);
 
-            string expectedBody = Template.approvalMessageBody;
+            string expectedBody = ApprovalMessageTemplate.approvalMessageBody;
             expectedBody = expectedBody.Replace("{EmployeeName}", employee.Name);
             expectedBody = expectedBody.Replace("{Start}", start.ToShortDateString());
             expectedBody = expectedBody.Replace("{End}", end.ToShortDateString());
@@ -80,9 +80,9 @@ namespace HolidayTests
             Assert.AreEqual(employee.Email, testChannel.LastTo);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);
 
-            Assert.AreEqual(Template.rejectionMessageSubject, testChannel.LastSubject);
+            Assert.AreEqual(RejectionMessageTemplate.rejectionMessageSubject, testChannel.LastSubject);
 
-            string expectedBody = Template.rejectionMessageBody;
+            string expectedBody = RejectionMessageTemplate.rejectionMessageBody;
             expectedBody = expectedBody.Replace("{EmployeeName}", employee.Name);
             expectedBody = expectedBody.Replace("{Start}", start.ToShortDateString());
             expectedBody = expectedBody.Replace("{End}", end.ToShortDateString());

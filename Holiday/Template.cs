@@ -4,14 +4,7 @@ namespace Holiday
 {
     public class Template
     {
-        public const string submissionMessageSubject = "Cerere de concediu";
-        public const string submissionMessageBody = "Subsemnatul {EmployeeName}, angajat iQuest va rog a-mi aproba cererea de concediu de odihna pe perioada {Start} - {End}.";
 
-        public const string approvalMessageSubject = "Cerere de concediu aprobata";
-        public const string approvalMessageBody = "Subsemnatul {ManagerName} aprob cererea de concediu de odihna pe perioada {Start} - {End} pentru {EmployeeName}.";
-
-        public const string rejectionMessageSubject = "Cerere de concediu rejectata";
-        public const string rejectionMessageBody = "Subsemnatul {ManagerName} nu aprob cererea de concediu de odihna pe perioada {Start} - {End} pentru {EmployeeName}.";
 
         public string Subject = "";
 
