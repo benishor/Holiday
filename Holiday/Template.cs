@@ -4,8 +4,6 @@ namespace Holiday
 {
     public class Template
     {
-        public string Subject = "";
-
         public string Body
         {
             get

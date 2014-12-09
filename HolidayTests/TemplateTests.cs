@@ -11,7 +11,6 @@ namespace HolidayTests
         public void Template_has_subject_and_body()
         {
             Template t = new Template();
-            Assert.IsNotNull(t.Subject);
             Assert.IsNotNull(t.Body);
         }
 

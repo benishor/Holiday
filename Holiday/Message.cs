@@ -27,7 +27,7 @@ namespace Holiday
 
         public static Message ApprovalMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
-            Template t = new ApprovalMessageTemplate(employee.Name, manager.Name, start.ToShortDateString(), end.ToShortDateString());
+            var t = new ApprovalMessageTemplate(employee.Name, manager.Name, start.ToShortDateString(), end.ToShortDateString());
 
             return new Message
                 {
