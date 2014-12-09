@@ -16,14 +16,14 @@ namespace Holiday
             this.manager = manager;
             this.start = start;
             this.end = end;
+
             Submit();
         }
 
         private void Submit()
         {
-            var message = new Message(new SubmissionMessageTemplate());
+            var message = CreateMessage(new SubmissionMessageTemplate());
 
-            FillMessage(message);
             message.From = employee.Email;
             message.To = manager.Email;
             message.CC = Employee.HR().Email;
@@ -33,9 +33,8 @@ namespace Holiday
 
         public void Approve()
         {
-            var message = new Message(new ApprovalMessageTemplate());
+            var message = CreateMessage(new ApprovalMessageTemplate());
 
-            FillMessage(message);
             message.From = manager.Email;
             message.To = Employee.HR().Email;
             message.CC = employee.Email;
@@ -45,9 +44,8 @@ namespace Holiday
 
         public void Reject()
         {
-            var message = new Message(new RejectionMessageTemplate());
+            var message = CreateMessage(new RejectionMessageTemplate());
 
-            FillMessage(message);
             message.From = manager.Email;
             message.To = employee.Email;
             message.CC = Employee.HR().Email;
@@ -55,12 +53,16 @@ namespace Holiday
             message.Send();
         }
 
-        private void FillMessage(Message message)
+        private Message CreateMessage(MessageTemplate template)
         {
-            message.SetEmployee(employee);
-            message.SetManager(manager);
-            message.SetStart(start);
-            message.SetEnd(end);
+            Message result = new Message(template);
+
+            result.SetEmployee(employee);
+            result.SetManager(manager);
+            result.SetStart(start);
+            result.SetEnd(end);
+
+            return result;
         }
     }
 }
