@@ -33,7 +33,7 @@ namespace HolidayTests
             Assert.AreEqual(employee.Email, testChannel.LastFrom);
             Assert.AreEqual(manager.Email, testChannel.LastTo);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);
-            Assert.AreEqual("Cerere de concediu", testChannel.LastSubject);
+            Assert.AreEqual(Template.submissionMessageSubject, testChannel.LastSubject);
         }
 
         [Test]
