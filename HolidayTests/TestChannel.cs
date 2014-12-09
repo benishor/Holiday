@@ -8,6 +8,7 @@ namespace HolidayTests
         public string LastTo;
         public string LastCC;
         public string LastSubject;
+        public string LastBody;
 
         public void Send(string from, string to, string cc, string subject, string body)
         {
@@ -15,6 +16,7 @@ namespace HolidayTests
             LastTo = to;
             LastCC = cc;
             LastSubject = subject;
+            LastBody = body;
         }
     }
 }

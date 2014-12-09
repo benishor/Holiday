@@ -9,8 +9,11 @@ namespace HolidayTests
     {
         private HolidayRequest request;
         private TestChannel testChannel;
+
         private readonly Employee employee = new Employee {Name= "Csaba Trucza", Email = "csaba.trucza@iquestgroup.com"};
         private readonly Employee manager = new Employee {Name= "Andrei Doibani", Email = "andrei.doibani@iquestgroup.com"};
+        private readonly DateTime start = new DateTime(2014, 11, 11);
+        private readonly DateTime end = new DateTime(2014, 11, 12);
 
         [SetUp]
         public void SetUp()
@@ -34,6 +37,12 @@ namespace HolidayTests
             Assert.AreEqual(manager.Email, testChannel.LastTo);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);
             Assert.AreEqual(Template.submissionMessageSubject, testChannel.LastSubject);
+
+            string expectedBody = Template.submissionMessageBody;
+            expectedBody = expectedBody.Replace("{EmployeeName}", employee.Name);
+            expectedBody = expectedBody.Replace("{Start}", start.ToShortDateString());
+            expectedBody = expectedBody.Replace("{End}", end.ToShortDateString());
+            Assert.AreEqual(expectedBody, testChannel.LastBody);
         }
 
         [Test]
@@ -66,8 +75,8 @@ namespace HolidayTests
             request = new HolidayRequest(
                 employee,
                 manager,
-                new DateTime(2014, 11, 11),
-                new DateTime(2014, 11, 12),
+                start,
+                end,
                 "vacation");            
         }
     }
