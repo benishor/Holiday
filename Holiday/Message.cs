@@ -12,16 +12,20 @@ namespace Holiday
 
         public static Message SubmissionMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
-            const string submissionMessageSubject = "Cerere de concediu";
-            const string submissionMessageBody = "Subsemnatul {0}, angajat iQuest va rog a-mi aproba cererea de concediu de odihna pe perioada {1} - {2}.";
+            Template t = new Template();
+            t.Subject = Template.submissionMessageSubject;
+            t.BodyTemplate = Template.submissionMessageBody;
+            t.SetParameter("EmployeeName", employee.Name);
+            t.SetParameter("Start", start.ToShortDateString());
+            t.SetParameter("End", end.ToShortDateString());
 
             return new Message
             {
                 from = employee.Email,
                 to = manager.Email,
                 cc = Employee.HR().Email,
-                subject = submissionMessageSubject,
-                body = string.Format(submissionMessageBody, employee.Name, start.ToShortDateString(), end.ToShortDateString())
+                subject = t.Subject,
+                body = t.Body
             };
         }
 
