@@ -41,9 +41,9 @@ namespace Holiday
 
         private void FillMessage(Message message, string from, string to, string cc)
         {
-            message.SetFrom(from);
-            message.SetTo(to);
-            message.SetCC(cc);
+            message.From = from;
+            message.To = to;
+            message.CC = cc;
 
             message.SetEmployee(employee);
             message.SetManager(manager);

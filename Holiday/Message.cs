@@ -4,30 +4,15 @@ namespace Holiday
 {
     public class Message
     {
-        private string from;
-        private string to;
-        private string cc;
+        public string From;
+        public string To;
+        public string CC;
 
         private readonly MessageTemplate t;
 
         public Message(MessageTemplate template)
         {
             t = template;
-        }
-
-        public void SetFrom(string from)
-        {
-            this.from = from;
-        }
-
-        public void SetTo(string to)
-        {
-            this.to = to;
-        }
-
-        public void SetCC(string cc)
-        {
-            this.cc = cc;
         }
 
         public void SetEmployee(Employee employee)
@@ -52,7 +37,7 @@ namespace Holiday
 
         public void Send()
         {
-            ChannelLocator.Channel.Send(from, to, cc, t.Subject, t.Render());
+            ChannelLocator.Channel.Send(From, To, CC, t.Subject, t.Render());
         }
 
     }
