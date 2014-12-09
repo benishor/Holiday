@@ -21,29 +21,41 @@ namespace Holiday
         private void Submit()
         {
             var message = new Message(new SubmissionMessageTemplate());
-            FillMessage(message, from: employee.Email, to: manager.Email, cc: Employee.HR().Email);
+
+            FillMessage(message);
+            message.From = employee.Email;
+            message.To = manager.Email;
+            message.CC = Employee.HR().Email;
+
             message.Send();
         }
 
         public void Approve()
         {
             var message = new Message(new ApprovalMessageTemplate());
-            FillMessage(message, from: manager.Email, to: Employee.HR().Email, cc: employee.Email);
+
+            FillMessage(message);
+            message.From = manager.Email;
+            message.To = Employee.HR().Email;
+            message.CC = employee.Email;
+
             message.Send();
         }
 
         public void Reject()
         {
             var message = new Message(new RejectionMessageTemplate());
-            FillMessage(message, from: manager.Email, to: employee.Email, cc: Employee.HR().Email);
+
+            FillMessage(message);
+            message.From = manager.Email;
+            message.To = employee.Email;
+            message.CC = Employee.HR().Email;
+
             message.Send();
         }
 
-        private void FillMessage(Message message, string from, string to, string cc)
+        private void FillMessage(Message message)
         {
-            message.From = from;
-            message.To = to;
-            message.CC = cc;
 
             message.SetEmployee(employee);
             message.SetManager(manager);
