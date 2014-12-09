@@ -4,13 +4,13 @@ namespace Holiday.MessageTemplates
 {
     public class Template
     {
-        private readonly string template = "";
+        private readonly string bodyTemplate = "";
 
         private readonly Dictionary<string, string> parameters = new Dictionary<string, string>();
 
-        public Template(string template)
+        public Template(string bodyTemplate)
         {
-            this.template = template;
+            this.bodyTemplate = bodyTemplate;
         }
 
         public void SetParameter(string name, string value)
@@ -25,7 +25,7 @@ namespace Holiday.MessageTemplates
 
         public string Render()
         {
-            string result = template;
+            string result = bodyTemplate;
 
             foreach (var parameter in parameters)
             {

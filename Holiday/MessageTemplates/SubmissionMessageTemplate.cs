@@ -6,7 +6,7 @@
         private const string submissionMessageBody = "Subsemnatul {EmployeeName}, angajat iQuest va rog a-mi aproba cererea de concediu de odihna pe perioada {Start} - {End}.";
 
         public SubmissionMessageTemplate() 
-            : base(submissionMessageBody, submissionMessageSubject)
+            : base(submissionMessageSubject, submissionMessageBody)
         {
         }
     }
