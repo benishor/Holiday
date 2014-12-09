@@ -32,15 +32,22 @@ namespace Holiday
 
         public static Message ApprovalMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
-            const string approvalMessageSubject = "Cerere de concediu aprobata";
-            const string approvalMessageBody = "Subsemnatul {0} aprob cererea de concediu de odihna pe perioada {1} - {2} pentru {3}.";
+
+            Template t = new Template();
+            t.Subject = Template.approvalMessageSubject;
+            t.BodyTemplate = Template.approvalMessageBody;
+            t.SetParameter("EmployeeName", employee.Name);
+            t.SetParameter("ManagerName", manager.Name);
+            t.SetParameter("Start", start.ToShortDateString());
+            t.SetParameter("End", end.ToShortDateString());
+
             return new Message
             {
                 from = manager.Email,
                 to = Employee.HR().Email,
                 cc = employee.Email,
-                subject = approvalMessageSubject,
-                body = string.Format(approvalMessageBody, manager.Name, employee.Name, start.ToShortDateString(), end.ToShortDateString())
+                subject = t.Subject,
+                body = t.Body
             };
         }
 

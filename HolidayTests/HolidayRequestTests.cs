@@ -36,6 +36,7 @@ namespace HolidayTests
             Assert.AreEqual(employee.Email, testChannel.LastFrom);
             Assert.AreEqual(manager.Email, testChannel.LastTo);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastCC);
+
             Assert.AreEqual(Template.submissionMessageSubject, testChannel.LastSubject);
 
             string expectedBody = Template.submissionMessageBody;
@@ -51,10 +52,21 @@ namespace HolidayTests
             CreateHolidayRequest();
 
             request.Approve();
+
             Assert.AreEqual(manager.Email, testChannel.LastFrom);
             Assert.AreEqual(Employee.HR().Email, testChannel.LastTo);
             Assert.AreEqual(employee.Email, testChannel.LastCC);
-            Assert.AreEqual("Cerere de concediu aprobata", testChannel.LastSubject);
+
+            Assert.AreEqual(Template.approvalMessageSubject, testChannel.LastSubject);
+
+            string expectedBody = Template.approvalMessageBody;
+            expectedBody = expectedBody.Replace("{EmployeeName}", employee.Name);
+            expectedBody = expectedBody.Replace("{Start}", start.ToShortDateString());
+            expectedBody = expectedBody.Replace("{End}", end.ToShortDateString());
+            expectedBody = expectedBody.Replace("{ManagerName}", manager.Name);
+
+            Assert.AreEqual(expectedBody, testChannel.LastBody);
+
         }
 
         [Test]
