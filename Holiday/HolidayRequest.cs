@@ -20,7 +20,16 @@ namespace Holiday
 
         private void Submit()
         {
-            var message = Message.SubmissionMessage(employee, manager, start, end);
+            //var message = Message.SubmissionMessage(employee, manager, start, end);
+
+            var message = new Message(new SubmissionMessageTemplate(), employee.Email, manager.Email, Employee.HR().Email);
+
+            message.SetEmployee(employee);
+            message.SetManager(manager);
+            message.SetStart(start);
+            message.SetEnd(end);
+
+
             message.Send();
         }
 
