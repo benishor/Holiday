@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using Holiday;
 using NUnit.Framework;
 
 namespace HolidayTests
@@ -37,38 +37,6 @@ namespace HolidayTests
             t.BodyTemplate = "Hello {EmployeeName}!";
 
             Assert.AreEqual("Hello Csaba Trucza!", t.Body);
-        }
-    }
-
-    public class Template
-    {
-        public string Subject = "";
-
-        public string Body
-        {
-            get
-            {
-                string result = BodyTemplate;
-
-                foreach (var parameter in parameters)
-                {
-                    result = result.Replace("{"+ parameter.Key + "}", parameter.Value);
-                }
-                return result;
-            }
-        }
-
-        private readonly Dictionary<string, string> parameters = new Dictionary<string, string>();
-        public string BodyTemplate = "";
-
-        public void SetParameter(string name, string value)
-        {
-            parameters[name] = value;
-        }
-
-        public string GetParameter(string name)
-        {
-            return parameters[name];
         }
     }
 }
