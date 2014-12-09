@@ -7,81 +7,27 @@ namespace Holiday
         private string from;
         private string to;
         private string cc;
-        private string subject;
-        private string body;
-        private static MessageTemplate messageTemplate;
 
-        private MessageTemplate t;
+        private readonly MessageTemplate t;
 
-        public Message(MessageTemplate template, string from, string to, string cc)
+        public Message(MessageTemplate template)
         {
             t = template;
+        }
+
+        public void SetFrom(string from)
+        {
             this.from = from;
+        }
+
+        public void SetTo(string to)
+        {
             this.to = to;
+        }
+
+        public void SetCC(string cc)
+        {
             this.cc = cc;
-        }
-
-        //public static Message SubmissionMessage(Employee employee, Employee manager, DateTime start, DateTime end)
-        //{
-        //    var template = new SubmissionMessageTemplate();
-        //    Message result = new Message(template);
-        //    result.SetEmployee(employee);
-        //    result.SetManager(manager);
-        //    result.SetStart(start);
-        //    result.SetEnd(end);
-
-        //    result.from = employee.Email;
-        //    result.to = manager.Email;
-        //    result.cc = Employee.HR().Email;
-        //    result.subject = template.Subject;
-        //    result.body = template.Render();
-
-        //    return result;
-        //}
-
-
-        public static Message ApprovalMessage(Employee employee, Employee manager, DateTime start, DateTime end)
-        {
-            var template = new ApprovalMessageTemplate();
-            Message result = new Message(template, manager.Email, Employee.HR().Email, employee.Email);
-            result.SetEmployee(employee);
-            result.SetManager(manager);
-            result.SetStart(start);
-            result.SetEnd(end);
-
-            result.subject = template.Subject;
-            result.body = template.Render();
-
-            return result;
-        }
-
-        public static Message RejectionMessage(Employee employee, Employee manager, DateTime start, DateTime end)
-        {
-            var template = new RejectionMessageTemplate();
-            Message result = new Message(template, manager.Email, employee.Email, Employee.HR().Email);
-            result.SetEmployee(employee);
-            result.SetManager(manager);
-            result.SetStart(start);
-            result.SetEnd(end);
-
-            result.subject = template.Subject;
-            result.body = template.Render();
-
-            return result;
-
-        }
-
-        private static void FillTemplate(Employee employee, Employee manager, DateTime start, DateTime end)
-        {
-            messageTemplate.SetEmployeeName(employee.Name);
-            messageTemplate.SetManagerName(manager.Name);
-            messageTemplate.SetStartDate(start);
-            messageTemplate.SetEndDate(end);
-        }
-
-        public void Send()
-        {
-            ChannelLocator.Channel.Send(from, to, cc, t.Subject, t.Render());
         }
 
         public void SetEmployee(Employee employee)
@@ -103,5 +49,11 @@ namespace Holiday
         {
             t.SetEndDate(end);
         }
+
+        public void Send()
+        {
+            ChannelLocator.Channel.Send(from, to, cc, t.Subject, t.Render());
+        }
+
     }
 }
