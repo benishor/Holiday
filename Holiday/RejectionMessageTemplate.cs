@@ -9,7 +9,7 @@ namespace Holiday
             : base(employeeName, managerName, start, end)
         {
             Subject = rejectionMessageSubject;
-            BodyTemplate = rejectionMessageBody;
+            template = rejectionMessageBody;
         }
     }
 }

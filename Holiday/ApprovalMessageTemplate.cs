@@ -9,7 +9,7 @@ namespace Holiday
             : base(employeeName, managerName, start, end)
         {
             Subject = approvalMessageSubject;
-            BodyTemplate = approvalMessageBody;
+            template = approvalMessageBody;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace HolidayTests
         public void Template_has_subject_and_body()
         {
             Template t = new Template();
-            Assert.IsNotNull(t.Body);
+            Assert.IsNotNull(t.Render());
         }
 
         [Test]
@@ -33,9 +33,9 @@ namespace HolidayTests
         {
             Template t = new Template();
             t.SetParameter("EmployeeName", "Csaba Trucza");
-            t.BodyTemplate = "Hello {EmployeeName}!";
+            t.template = "Hello {EmployeeName}!";
 
-            Assert.AreEqual("Hello Csaba Trucza!", t.Body);
+            Assert.AreEqual("Hello Csaba Trucza!", t.Render());
         }
     }
 }

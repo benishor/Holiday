@@ -9,7 +9,7 @@
             : base(employeeName, managerName, start, end)
         {
             Subject = submissionMessageSubject;
-            BodyTemplate = submissionMessageBody;
+            template = submissionMessageBody;
         }
     }
 }
