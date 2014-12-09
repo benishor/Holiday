@@ -6,9 +6,8 @@ namespace Holiday
         public const string approvalMessageBody = "Subsemnatul {ManagerName} aprob cererea de concediu de odihna pe perioada {Start} - {End} pentru {EmployeeName}.";
 
         public ApprovalMessageTemplate()
-            : base(approvalMessageBody)
+            : base(approvalMessageBody, approvalMessageSubject)
         {
-            Subject = approvalMessageSubject;
         }
     }
 }

@@ -4,11 +4,12 @@ namespace Holiday
 {
     public class MessageTemplate : Template
     {
-        public string Subject = "";
+        public readonly string Subject = "";
 
-        public MessageTemplate(string template)
+        protected MessageTemplate(string template, string subject)
             : base(template)
         {
+            Subject = subject;
         }
 
         public void SetEmployeeName(string employeeName)

@@ -6,9 +6,8 @@ namespace Holiday
         public const string rejectionMessageBody = "Subsemnatul {ManagerName} nu aprob cererea de concediu de odihna pe perioada {Start} - {End} pentru {EmployeeName}.";
 
         public RejectionMessageTemplate()
-            : base(rejectionMessageBody)
+            : base(rejectionMessageBody, rejectionMessageSubject)
         {
-            Subject = rejectionMessageSubject;
         }
     }
 }
