@@ -10,7 +10,7 @@ namespace HolidayTests
         [Test]
         public void Template_has_subject_and_body()
         {
-            Template t = new Template();
+            Template t = new Template("");
             Assert.IsNotNull(t.Render());
         }
 
@@ -20,7 +20,7 @@ namespace HolidayTests
             const string name = "EmployeeName";
             const string value = "Csaba Trucza";
 
-            Template t = new Template();
+            Template t = new Template("");
             t.SetParameter(name, value);
 
             var actual = t.GetParameter(name);
@@ -31,9 +31,8 @@ namespace HolidayTests
         [Test]
         public void Template_replaces_placeholders_with_parameters()
         {
-            Template t = new Template();
+            Template t = new Template("Hello {EmployeeName}!");
             t.SetParameter("EmployeeName", "Csaba Trucza");
-            t.template = "Hello {EmployeeName}!";
 
             Assert.AreEqual("Hello Csaba Trucza!", t.Render());
         }

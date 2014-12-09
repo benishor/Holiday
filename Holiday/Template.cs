@@ -4,9 +4,14 @@ namespace Holiday
 {
     public class Template
     {
-        public string template = "";
+        private readonly string template = "";
 
         private readonly Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+        public Template(string template)
+        {
+            this.template = template;
+        }
 
         public void SetParameter(string name, string value)
         {
