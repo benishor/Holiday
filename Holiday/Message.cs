@@ -12,7 +12,7 @@ namespace Holiday
 
         public static Message SubmissionMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
-            var template = new SubmissionMessageTemplate(employee.Name, start.ToShortDateString(), end.ToShortDateString());
+            var template = new SubmissionMessageTemplate(employee.Name, manager.Name, start.ToShortDateString(), end.ToShortDateString());
 
             return new Message
                 {
