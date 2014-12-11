@@ -1,6 +1,8 @@
 Holiday
 =======
 
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/ctrucza/Holiday?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Part of the holiday request application, we needed to send various emails around:
 - when an employee wants a holiday, it fills out a form and submits it. The request is sent to the user's manager.
 - if someone is a manager, he will receive the an email when someone submits a holiday request. He can choose to approve or reject the request.
