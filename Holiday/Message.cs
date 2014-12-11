@@ -3,43 +3,48 @@ using Holiday.MessageTemplates;
 
 namespace Holiday
 {
-    public class Message
+    public class Message : IHolidayRequestView
     {
         public string From;
         public string To;
         public string CC;
 
-        private readonly MessageTemplate template;
-
-        public Message(MessageTemplate template)
-        {
-            this.template = template;
-        }
+        private Template template;
+        private string subject;
 
         public void SetEmployee(Employee employee)
         {
-            template.SetEmployeeName(employee.Name);
+            template.SetParameter("EmployeeName", employee.Name);
         }
 
         public void SetManager(Employee manager)
         {
-            template.SetManagerName(manager.Name);
+            template.SetParameter("ManagerName", manager.Name);
         }
 
         public void SetStart(DateTime start)
         {
-            template.SetStartDate(start);
+            template.SetParameter("Start", start.ToShortDateString());
         }
 
         public void SetEnd(DateTime end)
         {
-            template.SetEndDate(end);
+            template.SetParameter("End", end.ToShortDateString());
+        }
+
+        public void SetSubject(string subject)
+        {
+            this.subject = subject;
+        }
+
+        public void SetBodyTemplate(string bodyTemplate)
+        {
+            template = new Template(bodyTemplate);
         }
 
         public void Send()
         {
-            ChannelLocator.Channel.Send(From, To, CC, template.Subject, template.GetBody());
+            ChannelLocator.Channel.Send(From, To, CC, subject, template.Render());
         }
-
     }
 }
