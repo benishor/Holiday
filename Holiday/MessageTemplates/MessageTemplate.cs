@@ -7,10 +7,10 @@ namespace Holiday.MessageTemplates
         public readonly string Subject = "";
         private readonly Template template;
 
-        protected MessageTemplate(string subject, string template)
+        protected MessageTemplate(string subject, string bodyTemplate)
         {
             Subject = subject;
-            this.template = new Template(template);
+            template = new Template(bodyTemplate);
         }
 
         public void SetEmployeeName(string employeeName)
