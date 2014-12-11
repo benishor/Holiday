@@ -6,8 +6,8 @@ namespace Holiday.MessageTemplates
     {
         public readonly string Subject = "";
 
-        protected MessageTemplate(string subject, string bodyTemplate)
-            : base(bodyTemplate)
+        protected MessageTemplate(string subject, string template)
+            : base(template)
         {
             Subject = subject;
         }
