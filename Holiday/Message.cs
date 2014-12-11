@@ -38,7 +38,7 @@ namespace Holiday
 
         public void Send()
         {
-            ChannelLocator.Channel.Send(From, To, CC, template.Subject, template.Render());
+            ChannelLocator.Channel.Send(From, To, CC, template.Subject, template.GetBody());
         }
 
     }

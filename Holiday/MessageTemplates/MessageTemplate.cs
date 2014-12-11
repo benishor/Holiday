@@ -2,34 +2,40 @@
 
 namespace Holiday.MessageTemplates
 {
-    public class MessageTemplate : Template
+    public class MessageTemplate
     {
         public readonly string Subject = "";
+        private readonly Template template;
 
         protected MessageTemplate(string subject, string template)
-            : base(template)
         {
             Subject = subject;
+            this.template = new Template(template);
         }
 
         public void SetEmployeeName(string employeeName)
         {
-            SetParameter("EmployeeName", employeeName);
+            template.SetParameter("EmployeeName", employeeName);
         }
 
         public void SetManagerName(string managerName)
         {
-            SetParameter("ManagerName", managerName);
+            template.SetParameter("ManagerName", managerName);
         }
 
         public void SetStartDate(DateTime start)
         {
-            SetParameter("Start", start.ToShortDateString());
+            template.SetParameter("Start", start.ToShortDateString());
         }
 
         public void SetEndDate(DateTime end)
         {
-            SetParameter("End", end.ToShortDateString());
+            template.SetParameter("End", end.ToShortDateString());
+        }
+
+        public string GetBody()
+        {
+            return template.Render();
         }
     }
 }
