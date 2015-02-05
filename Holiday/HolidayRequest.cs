@@ -41,5 +41,11 @@ namespace Holiday
             // TODO: is this the right way to cehck for employee equality?
             return anEmployee == employee;
         }
+
+        public bool IsWaitingApprovalBy(Employee aManager)
+        {
+            // TODO: request status
+            return aManager == manager;
+        }
     }
 }

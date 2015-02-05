@@ -48,6 +48,17 @@ namespace HolidayTests
 
             CollectionAssert.IsEmpty(anotherUsersRequests);
         }
+
+        [Test]
+        public void can_get_requests_pending_approval()
+        {
+            var employee = new Employee();
+            var dal = new DAL();
+            var manager = new Employee();
+            var request = dal.CreateNewRequest(employee, manager, DateTime.Now, DateTime.Now);
+            var requestsWaitingApproval = dal.GetRequestsWaitingApproval(manager);
+            CollectionAssert.Contains(requestsWaitingApproval, request);
+        }
     }
 
     public class DAL
@@ -68,6 +79,11 @@ namespace HolidayTests
         public IEnumerable<HolidayRequest> GetAllRequest(Employee employee)
         {
             return requests.Where(r=>r.WasSubmittedBy(employee));
+        }
+
+        public IEnumerable<HolidayRequest> GetRequestsWaitingApproval(Employee manager)
+        {
+            return requests.Where(r => r.IsWaitingApprovalBy(manager));
         }
     }
 }
