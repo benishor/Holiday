@@ -27,10 +27,9 @@ namespace HolidayTests
         public void new_requests_are_saved()
         {
             var me = new Employee();
-            var manager = new Employee();
             var dal = new DAL();
 
-            var request = dal.CreateNewRequest(me, manager, DateTime.Now, DateTime.Now);
+            var request = dal.CreateNewRequest(me, new Employee(), DateTime.Now, DateTime.Now);
             var myRequests = dal.GetAllRequest(me).ToList();
             
             Assert.AreEqual(1, myRequests.Count());
