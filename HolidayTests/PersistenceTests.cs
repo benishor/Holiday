@@ -61,7 +61,7 @@ namespace HolidayTests
         }
 
         [Test]
-        public void after_approval_request_is_not_pending()
+        public void approved_requests_are_not_pending()
         {
             var employee = new Employee();
             var dal = new DAL();
