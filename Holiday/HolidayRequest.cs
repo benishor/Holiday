@@ -9,6 +9,13 @@ namespace Holiday
         private readonly DateTime start;
         private readonly DateTime end;
 
+        private enum Status
+        {
+            Pending,
+            Approved
+        }
+        private Status status;
+
         public HolidayRequest(Employee employee, Employee manager, DateTime start, DateTime end)
         {
             this.employee = employee;
@@ -20,12 +27,14 @@ namespace Holiday
 
         private void Submit()
         {
+            status = Status.Pending;
             var message = Message.SubmissionMessage(employee, manager, start, end);
             message.Send();
         }
 
         public void Approve()
         {
+            status = Status.Approved;
             var message = Message.ApprovalMessage(employee, manager, start, end);
             message.Send();
         }
@@ -45,7 +54,12 @@ namespace Holiday
         public bool IsWaitingApprovalBy(Employee aManager)
         {
             // TODO: request status
-            return aManager == manager;
+            return IsWaitingApproval() && (aManager == manager);
+        }
+
+        private bool IsWaitingApproval()
+        {
+            return status == Status.Pending;
         }
     }
 }
