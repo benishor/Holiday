@@ -9,7 +9,7 @@ namespace Holiday
         private readonly DateTime start;
         private readonly DateTime end;
 
-        public HolidayRequest(Employee employee, Employee manager, DateTime start, DateTime end, string type)
+        public HolidayRequest(Employee employee, Employee manager, DateTime start, DateTime end)
         {
             this.employee = employee;
             this.manager = manager;

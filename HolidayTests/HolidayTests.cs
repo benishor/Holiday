@@ -63,8 +63,8 @@ namespace HolidayTests
                 employee,
                 manager,
                 new DateTime(2014, 11, 11),
-                new DateTime(2014, 11, 12),
-                "vacation");            
+                new DateTime(2014, 11, 12)
+                );            
         }
     }
 }
