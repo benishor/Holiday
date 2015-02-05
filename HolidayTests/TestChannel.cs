@@ -8,11 +8,11 @@ namespace HolidayTests
         private string lastTo;
         private string lastCC;
 
-        public void Send(string from, string to, string cc, string subject, string body)
+        public void Send(Message message)
         {
-            lastFrom = from;
-            lastTo = to;
-            lastCC = cc;
+            lastFrom = message.From;
+            lastTo = message.To;
+            lastCC = message.CC;
         }
 
         public bool LastMessageFrom(string from)

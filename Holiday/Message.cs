@@ -4,11 +4,11 @@ namespace Holiday
 {
     public class Message
     {
-        private string from;
-        private string to;
-        private string cc;
-        private string subject;
-        private string body;
+        public string From;
+        public string To;
+        public string CC;
+        public string Subject;
+        public string Body;
 
         public static Message SubmissionMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
@@ -17,11 +17,11 @@ namespace Holiday
 
             return new Message
             {
-                from = employee.Email,
-                to = manager.Email,
-                cc = Employee.HR().Email,
-                subject = submissionMessageSubject,
-                body = string.Format(submissionMessageBody, employee.Name, start.ToShortDateString(), end.ToShortDateString())
+                From = employee.Email,
+                To = manager.Email,
+                CC = Employee.HR().Email,
+                Subject = submissionMessageSubject,
+                Body = string.Format(submissionMessageBody, employee.Name, start.ToShortDateString(), end.ToShortDateString())
             };
         }
 
@@ -32,11 +32,11 @@ namespace Holiday
             const string approvalMessageBody = "Subsemnatul {0} aprob cererea de concediu de odihna pe perioada {1} - {2} pentru {3}.";
             return new Message
             {
-                from = manager.Email,
-                to = Employee.HR().Email,
-                cc = employee.Email,
-                subject = approvalMessageSubject,
-                body = string.Format(approvalMessageBody, manager.Name, employee.Name, start.ToShortDateString(), end.ToShortDateString())
+                From = manager.Email,
+                To = Employee.HR().Email,
+                CC = employee.Email,
+                Subject = approvalMessageSubject,
+                Body = string.Format(approvalMessageBody, manager.Name, employee.Name, start.ToShortDateString(), end.ToShortDateString())
             };
         }
 
@@ -46,17 +46,17 @@ namespace Holiday
             const string rejectionMessageBody = "Subsemnatul {0} nu aprob cererea de concediu de odihna pe perioada {1} - {2} pentru {3}.";
             return new Message
             {
-                from = manager.Email,
-                to = employee.Email,
-                cc = Employee.HR().Email,
-                subject = rejectionMessageSubject,
-                body = string.Format(rejectionMessageBody, manager.Name, employee.Name, start.ToShortDateString(), end.ToShortDateString())
+                From = manager.Email,
+                To = employee.Email,
+                CC = Employee.HR().Email,
+                Subject = rejectionMessageSubject,
+                Body = string.Format(rejectionMessageBody, manager.Name, employee.Name, start.ToShortDateString(), end.ToShortDateString())
             };
         }
 
         public void Send()
         {
-            ChannelLocator.Channel.Send(from, to, cc, subject, body);
+            ChannelLocator.Channel.Send(this);
         }
     }
 
