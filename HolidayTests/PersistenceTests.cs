@@ -34,10 +34,19 @@ namespace HolidayTests
             
             Assert.AreEqual(1, myRequests.Count());
             CollectionAssert.Contains(myRequests, request);
+        }
 
-            //dal.GetRequestsWaitingForApproval(me);
-            //dal.GetAllRequests(me);
-            //dal.GetRequestsByStatus(pending);
+        [Test]
+        public void my_requests_are_not_mixed_with_others()
+        {
+            var aUser = new Employee();
+            var dal = new DAL();
+            var request = dal.CreateNewRequest(aUser, new Employee(), DateTime.Now, DateTime.Now);
+
+            var anotherUser = new Employee();
+            var anotherUsersRequests = dal.GetAllRequest(anotherUser).ToList();
+
+            CollectionAssert.IsEmpty(anotherUsersRequests);
         }
     }
 
@@ -56,9 +65,9 @@ namespace HolidayTests
         {
         }
 
-        public IEnumerable<HolidayRequest> GetAllRequest(Employee me)
+        public IEnumerable<HolidayRequest> GetAllRequest(Employee employee)
         {
-            return requests;
+            return requests.Where(r=>r.WasSubmittedBy(employee));
         }
     }
 }

@@ -35,5 +35,11 @@ namespace Holiday
             var message = Message.RejectionMessage(employee, manager, start, end);
             message.Send();
         }
+
+        public bool WasSubmittedBy(Employee anEmployee)
+        {
+            // TODO: is this the right way to cehck for employee equality?
+            return anEmployee == employee;
+        }
     }
 }
