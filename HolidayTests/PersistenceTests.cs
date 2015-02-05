@@ -71,7 +71,19 @@ namespace HolidayTests
 
             var requestsWaitingApproval = dal.GetRequestsWaitingApproval(manager);
             CollectionAssert.IsEmpty(requestsWaitingApproval);
-            
+        }
+
+        [Test]
+        public void rejected_requests_are_not_pending()
+        {
+            var employee = new Employee();
+            var dal = new DAL();
+            var manager = new Employee();
+            var request = dal.CreateNewRequest(employee, manager, DateTime.Now, DateTime.Now);
+            request.Reject();
+
+            var requestsWaitingApproval = dal.GetRequestsWaitingApproval(manager);
+            CollectionAssert.IsEmpty(requestsWaitingApproval);
         }
     }
 

@@ -12,7 +12,8 @@ namespace Holiday
         private enum Status
         {
             Pending,
-            Approved
+            Approved,
+            Rejected
         }
         private Status status;
 
@@ -41,6 +42,7 @@ namespace Holiday
 
         public void Reject()
         {
+            status = Status.Rejected;
             var message = Message.RejectionMessage(employee, manager, start, end);
             message.Send();
         }
