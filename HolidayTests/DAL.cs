@@ -7,9 +7,9 @@ namespace HolidayTests
 {
     public class DAL
     {
-        private Storage storage = new Storage();
-        private ICollection<HolidayRequest> requests;
-        private ICollection<Employee> employees;
+        private readonly Storage storage = new Storage();
+        private readonly ICollection<HolidayRequest> requests;
+        private readonly ICollection<Employee> employees;
 
         public DAL()
         {
