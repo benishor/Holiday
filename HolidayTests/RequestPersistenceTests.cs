@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace HolidayTests
 {
     [TestFixture]
-    public class PersistenceTests
+    public class RequestPersistenceTests
     {
         [Test]
         public void usage()
