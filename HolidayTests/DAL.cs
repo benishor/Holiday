@@ -8,19 +8,11 @@ namespace HolidayTests
     public class DAL
     {
         private readonly Storage storage = new Storage();
-        private readonly ICollection<HolidayRequest> requests;
-        private readonly ICollection<Employee> employees;
-
-        public DAL()
-        {
-            requests = storage.GetStorageFor<HolidayRequest>();
-            employees = storage.GetStorageFor<Employee>();
-        }
 
         public HolidayRequest CreateNewRequest(Employee employee, Employee manager, DateTime start, DateTime end)
         {
             var newRequest = new HolidayRequest(employee, manager, start, end);
-            requests.Add(newRequest);
+            storage.GetStorageFor<HolidayRequest>().Add(newRequest);
             return newRequest;
         }
 
@@ -30,18 +22,18 @@ namespace HolidayTests
 
         public IEnumerable<HolidayRequest> GetAllRequest(Employee employee)
         {
-            return requests.Where(r=>r.WasSubmittedBy(employee));
+            return storage.GetStorageFor<HolidayRequest>().Where(r=>r.WasSubmittedBy(employee));
         }
 
         public IEnumerable<HolidayRequest> GetRequestsWaitingApproval(Employee manager)
         {
-            return requests.Where(r => r.IsWaitingApprovalBy(manager));
+            return storage.GetStorageFor<HolidayRequest>().Where(r => r.IsWaitingApprovalBy(manager));
         }
 
         public Employee CreateNewEmployee()
         {
             var newEmployee = new Employee();
-            employees.Add(newEmployee);
+            storage.GetStorageFor<Employee>().Add(newEmployee);
             return newEmployee;
         }
     }
