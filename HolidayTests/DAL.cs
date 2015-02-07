@@ -7,7 +7,7 @@ namespace HolidayTests
 {
     public class DAL
     {
-        private readonly Storage storage = new Storage();
+        private readonly IStorage storage = new Storage();
 
         public HolidayRequest CreateNewRequest(Employee employee, Employee manager, DateTime start, DateTime end)
         {
