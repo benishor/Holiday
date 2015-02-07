@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace HolidayTests
+namespace Holiday
 {
     public interface IStorage
     {

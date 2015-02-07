@@ -46,6 +46,7 @@
     <Compile Include="Employee.cs" />
     <Compile Include="HolidayRequest.cs" />
     <Compile Include="IChannel.cs" />
+    <Compile Include="IStorage.cs" />
     <Compile Include="MailChannel.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
