@@ -5,10 +5,23 @@ using Holiday;
 
 namespace HolidayTests
 {
+    public class Storage
+    {
+        public readonly ICollection<HolidayRequest> requests = new List<HolidayRequest>();
+        public readonly ICollection<Employee> employees = new List<Employee>();
+        
+    }
     public class DAL
     {
-        private readonly ICollection<HolidayRequest> requests = new List<HolidayRequest>();
-        private readonly ICollection<Employee> employees = new List<Employee>();
+        private Storage storage = new Storage();
+        private ICollection<HolidayRequest> requests;
+        private ICollection<Employee> employees;
+
+        public DAL()
+        {
+            requests = storage.requests;
+            employees = storage.employees;
+        }
 
         public HolidayRequest CreateNewRequest(Employee employee, Employee manager, DateTime start, DateTime end)
         {
