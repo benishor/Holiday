@@ -41,6 +41,7 @@
     <Compile Include="HolidayTests.cs" />
     <Compile Include="RequestPersistenceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage.cs" />
     <Compile Include="TestChannel.cs" />
     <Compile Include="EmployeePersistenceTests.cs" />
   </ItemGroup>
