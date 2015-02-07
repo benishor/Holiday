@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Holiday;
@@ -7,8 +8,24 @@ namespace HolidayTests
 {
     public class Storage
     {
-        public readonly ICollection<HolidayRequest> requests = new List<HolidayRequest>();
-        public readonly ICollection<Employee> employees = new List<Employee>();
+        private readonly List<HolidayRequest> requests = new List<HolidayRequest>();
+        private readonly List<Employee> employees = new List<Employee>();
+
+        private readonly Dictionary<Type, IList> lists = new Dictionary<Type, IList>();
+
+        public Storage()
+        {
+            lists.Add(typeof(HolidayRequest), requests);
+            lists.Add(typeof(Employee), employees);
+        }
+
+        public ICollection<T> GetStorageFor<T>()
+        {
+            if (lists.ContainsKey(typeof (T)))
+                return lists[typeof (T)] as ICollection<T>;
+
+            return null;
+        }
         
     }
     public class DAL
@@ -19,8 +36,8 @@ namespace HolidayTests
 
         public DAL()
         {
-            requests = storage.requests;
-            employees = storage.employees;
+            requests = storage.GetStorageFor<HolidayRequest>();
+            employees = storage.GetStorageFor<Employee>();
         }
 
         public HolidayRequest CreateNewRequest(Employee employee, Employee manager, DateTime start, DateTime end)
