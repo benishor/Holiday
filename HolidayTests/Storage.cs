@@ -5,11 +5,6 @@ using Holiday;
 
 namespace HolidayTests
 {
-    public interface IStorage
-    {
-        ICollection<T> GetStorageFor<T>();
-    }
-
     public class Storage : IStorage
     {
         private readonly List<HolidayRequest> requests = new List<HolidayRequest>();
