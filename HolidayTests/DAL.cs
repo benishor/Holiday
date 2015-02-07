@@ -12,7 +12,7 @@ namespace HolidayTests
         public HolidayRequest CreateNewRequest(Employee employee, Employee manager, DateTime start, DateTime end)
         {
             var newRequest = new HolidayRequest(employee, manager, start, end);
-            storage.GetStorageFor<HolidayRequest>().Add(newRequest);
+            storage.Add<HolidayRequest>(newRequest);
             return newRequest;
         }
 
@@ -33,7 +33,7 @@ namespace HolidayTests
         public Employee CreateNewEmployee()
         {
             var newEmployee = new Employee();
-            storage.GetStorageFor<Employee>().Add(newEmployee);
+            storage.Add<Employee>(newEmployee);
             return newEmployee;
         }
     }

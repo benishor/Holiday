@@ -1,9 +1,10 @@
-using System.Collections.Generic;
+using System.Linq;
 
 namespace Holiday
 {
     public interface IStorage
     {
-        ICollection<T> GetStorageFor<T>();
+        IQueryable<T> GetStorageFor<T>() where T: class;
+        void Add<T>(T entity) where T: class;
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Holiday;
 
 namespace HolidayTests
@@ -18,13 +19,22 @@ namespace HolidayTests
             lists.Add(typeof(Employee), employees);
         }
 
-        public ICollection<T> GetStorageFor<T>()
+        public IQueryable<T> GetStorageFor<T>() where T: class
         {
             if (lists.ContainsKey(typeof (T)))
-                return lists[typeof (T)] as ICollection<T>;
+                return (GetListFor<T>()).AsQueryable();
 
             return null;
         }
-        
+
+        private IList<T> GetListFor<T>() where T: class
+        {
+            return lists[typeof (T)] as IList<T>;
+        }
+
+        public void Add<T>(T entity) where T : class
+        {
+            GetListFor<T>().Add(entity);
+        }
     }
 }
