@@ -8,6 +8,7 @@ namespace HolidayTests
     public class DAL
     {
         private readonly ICollection<HolidayRequest> requests = new List<HolidayRequest>();
+        private readonly ICollection<Employee> employees = new List<Employee>();
 
         public HolidayRequest CreateNewRequest(Employee employee, Employee manager, DateTime start, DateTime end)
         {
@@ -28,6 +29,13 @@ namespace HolidayTests
         public IEnumerable<HolidayRequest> GetRequestsWaitingApproval(Employee manager)
         {
             return requests.Where(r => r.IsWaitingApprovalBy(manager));
+        }
+
+        public Employee CreateNewEmployee()
+        {
+            var newEmployee = new Employee();
+            employees.Add(newEmployee);
+            return newEmployee;
         }
     }
 }
