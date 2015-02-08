@@ -5,10 +5,10 @@ namespace Holiday
     public class HolidayRequest
     {
         public int ID { get; set; }
-        private readonly Employee employee;
-        private readonly Employee manager;
-        private readonly DateTime start;
-        private readonly DateTime end;
+        public virtual Employee employee { get; set; }
+        public virtual Employee manager { get; set; }
+        public DateTime start { get; set; }
+        public DateTime end { get; set; }
 
         private enum Status
         {

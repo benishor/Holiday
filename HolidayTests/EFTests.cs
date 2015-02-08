@@ -40,13 +40,14 @@ namespace HolidayTests
             dal.AddEmployee(employee);
             var savedEmployee = dal.GetEmployeeByID(employee.ID);
             Assert.IsNotNull(savedEmployee);
-            Assert.AreSame(employee, savedEmployee);
+            Assert.AreEqual(employee, savedEmployee);
 
             // Just for good measure, load the employee from another context
             var anotherDal = new DAL(new EFStorage());
-            var copyOfEmployee = dal.GetEmployeeByID(employee.ID);
+            var copyOfEmployee = anotherDal.GetEmployeeByID(employee.ID);
             Assert.IsNotNull(copyOfEmployee);
-            Assert.AreSame(employee, copyOfEmployee);
+            Assert.AreEqual(employee.Name, copyOfEmployee.Name);
+            Assert.AreEqual(employee.Email, copyOfEmployee.Email);
         }
 
         [Test]
@@ -62,11 +63,12 @@ namespace HolidayTests
             var request = new HolidayRequest(employee, manager, DateTime.Now, DateTime.Now);
             dal.AddRequest(request);
             var savedRequest = dal.GetRequestByID(request.ID);
-            Assert.AreSame(request, savedRequest);
+            Assert.AreEqual(request, savedRequest);
             
             var anotherDal = new DAL(new EFStorage());
-            var copyOfRequest = dal.GetRequestByID(request.ID);
-            Assert.AreSame(request, savedRequest);
+            var copyOfRequest = anotherDal.GetRequestByID(request.ID);
+            Assert.AreEqual(request.employee.Name, copyOfRequest.employee.Name);
+            Assert.AreEqual(request.manager.Name, copyOfRequest.manager.Name);
         }
     }
 }
