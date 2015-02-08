@@ -40,13 +40,28 @@ namespace HolidayTests
         public Employee CreateNewEmployee()
         {
             var newEmployee = new Employee();
-            storage.Add<Employee>(newEmployee);
+            storage.Add(newEmployee);
             return newEmployee;
         }
 
         public Employee GetEmployeeByID(int id)
         {
             return storage.GetStorageFor<Employee>().SingleOrDefault(e => e.ID == id);
+        }
+
+        public void AddEmployee(Employee employee)
+        {
+            storage.Add(employee);
+        }
+
+        public void AddRequest(HolidayRequest request)
+        {
+            storage.Add(request);
+        }
+
+        public HolidayRequest GetRequestByID(int id)
+        {
+            return storage.GetStorageFor<HolidayRequest>().SingleOrDefault(r => r.ID == id);
         }
     }
 }

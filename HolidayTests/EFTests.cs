@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,45 @@ namespace HolidayTests
             storage.Add(new HolidayRequest(new Employee(), new Employee(), DateTime.Now, DateTime.Now));
             var employees = storage.GetStorageFor<Employee>().ToList();
             var holidayRequests = storage.GetStorageFor<HolidayRequest>().ToList();
+        }
+
+        [Test]
+        public void new_employee_is_saved()
+        {
+            var dal = new DAL(new EFStorage());
+            var employee = new Employee();
+            employee.Email = "employee@company.com";
+            employee.Name = "John Doe";
+            dal.AddEmployee(employee);
+            var savedEmployee = dal.GetEmployeeByID(employee.ID);
+            Assert.IsNotNull(savedEmployee);
+            Assert.AreSame(employee, savedEmployee);
+
+            // Just for good measure, load the employee from another context
+            var anotherDal = new DAL(new EFStorage());
+            var copyOfEmployee = dal.GetEmployeeByID(employee.ID);
+            Assert.IsNotNull(copyOfEmployee);
+            Assert.AreSame(employee, copyOfEmployee);
+        }
+
+        [Test]
+        public void new_request_is_saved()
+        {
+            var dal = new DAL(new EFStorage());
+
+            var employee = new Employee {Name = "Employee", Email = "employee@company.com"};
+            dal.AddEmployee(employee);
+            var manager = new Employee {Name = "Manager", Email = "manager@company.com"};
+            dal.AddEmployee(manager);
+
+            var request = new HolidayRequest(employee, manager, DateTime.Now, DateTime.Now);
+            dal.AddRequest(request);
+            var savedRequest = dal.GetRequestByID(request.ID);
+            Assert.AreSame(request, savedRequest);
+            
+            var anotherDal = new DAL(new EFStorage());
+            var copyOfRequest = dal.GetRequestByID(request.ID);
+            Assert.AreSame(request, savedRequest);
         }
     }
 }
