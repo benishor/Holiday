@@ -13,10 +13,8 @@ namespace HolidayTests
         {
             var dal = new DAL();
             var request = dal.CreateNewRequest(new Employee(), new Employee(), DateTime.Now, DateTime.Now);
-            request.Approve();
-            dal.UpdateRequest(request);
-            request.Reject();
-            dal.UpdateRequest(request);
+            request.Approve(); // maybe dal.ApproveRequest()
+            request.Reject(); // maybe dal.RejectRequest()
         }
 
         [Test]

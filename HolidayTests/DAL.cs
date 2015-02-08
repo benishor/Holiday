@@ -16,10 +16,6 @@ namespace HolidayTests
             return newRequest;
         }
 
-        public void UpdateRequest(HolidayRequest request)
-        {
-        }
-
         public IEnumerable<HolidayRequest> GetAllRequest(Employee employee)
         {
             return storage.GetStorageFor<HolidayRequest>().Where(r=>r.WasSubmittedBy(employee));
