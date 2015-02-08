@@ -14,7 +14,7 @@ namespace HolidayTests
         [Test]
         public void usage()
         {
-            var dal = new DAL();
+            var dal = new DAL(new Storage());
             var employee = new Employee();
             dal.AddEmployee(employee);
         }

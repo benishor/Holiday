@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChannelLocator.cs" />
+    <Compile Include="DAL.cs" />
     <Compile Include="EFStorage.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="HolidayRequest.cs" />

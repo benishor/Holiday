@@ -45,7 +45,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL.cs" />
     <Compile Include="EFTests.cs" />
     <Compile Include="HolidayTests.cs" />
     <Compile Include="RequestPersistenceTests.cs" />

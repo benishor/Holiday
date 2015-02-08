@@ -1,19 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Holiday;
 
-namespace HolidayTests
+namespace Holiday
 {
     public class DAL
     {
         private readonly IStorage storage;
-
-        public DAL()
-            :this(new Storage())
-        {
-            
-        }
 
         public DAL(IStorage storage)
         {
