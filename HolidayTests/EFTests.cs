@@ -31,6 +31,42 @@ namespace HolidayTests
         }
 
         [Test]
+        public void usage_test()
+        {
+            {
+                var dal = new DAL(new EFStorage());
+                var employee = new Employee();
+                dal.AddEmployee(employee);
+                var manager = new Employee();
+                dal.AddEmployee(manager);
+
+                var request = new HolidayRequest(employee, manager, DateTime.Now, DateTime.Now);
+                dal.AddRequest(request);
+
+                dal.ApproveRequest(request);
+                dal.RejectRequest(request);
+                
+            }
+
+            // What we want:
+            {
+                var dal = new DAL(new EFStorage());
+
+                var employee = new Employee();
+                dal.AddEmployee(employee);
+                var manager = new Employee();
+                dal.AddEmployee(manager);
+
+                var request = new HolidayRequest(employee, manager, DateTime.Now, DateTime.Now);
+                dal.AddRequest(request);
+
+                request.Approve();
+                request.Reject();
+                
+            }
+        }
+
+        [Test]
         public void new_employee_is_saved()
         {
             var dal = new DAL(new EFStorage());
