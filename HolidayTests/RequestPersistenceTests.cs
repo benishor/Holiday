@@ -8,6 +8,18 @@ namespace HolidayTests
     [TestFixture]
     public class RequestPersistenceTests
     {
+        [SetUp]
+        public void SetUp()
+        {
+            ChannelLocator.Channel = new TestChannel();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            ChannelLocator.Channel = null;
+        }
+
         [Test]
         public void usage()
         {

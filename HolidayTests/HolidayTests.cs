@@ -19,6 +19,12 @@ namespace HolidayTests
             ChannelLocator.Channel = testChannel;
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            ChannelLocator.Channel = null;
+        }
+
         [Test]
         public void usage()
         {
