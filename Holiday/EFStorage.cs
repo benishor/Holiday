@@ -10,6 +10,11 @@ namespace Holiday
         public DbSet<HolidayRequest> HolidayRequests { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
+        public EFStorage()
+        {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFStorage>());
+        }
+
         public IQueryable<T> GetStorageFor<T>() where T : class
         {
             return Set<T>();

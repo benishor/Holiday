@@ -4,6 +4,7 @@ namespace Holiday
 {
     public class HolidayRequest
     {
+        public int ID { get; set; }
         private readonly Employee employee;
         private readonly Employee manager;
         private readonly DateTime start;
@@ -16,6 +17,11 @@ namespace Holiday
             Rejected
         }
         private Status status;
+
+        public HolidayRequest()
+        {
+            
+        }
 
         public HolidayRequest(Employee employee, Employee manager, DateTime start, DateTime end)
         {

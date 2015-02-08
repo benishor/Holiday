@@ -25,7 +25,6 @@ namespace Holiday
             };
         }
 
-
         public static Message ApprovalMessage(Employee employee, Employee manager, DateTime start, DateTime end)
         {
             const string approvalMessageSubject = "Cerere de concediu aprobata";
