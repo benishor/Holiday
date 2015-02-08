@@ -20,13 +20,6 @@ namespace HolidayTests
             this.storage = storage;
         }
 
-        public HolidayRequest CreateNewRequest(Employee employee, Employee manager, DateTime start, DateTime end)
-        {
-            var newRequest = new HolidayRequest(employee, manager, start, end);
-            storage.Add<HolidayRequest>(newRequest);
-            return newRequest;
-        }
-
         public IEnumerable<HolidayRequest> GetAllRequest(Employee employee)
         {
             return storage.GetStorageFor<HolidayRequest>().Where(r=>r.WasSubmittedBy(employee));
@@ -37,21 +30,14 @@ namespace HolidayTests
             return storage.GetStorageFor<HolidayRequest>().Where(r => r.IsWaitingApprovalBy(manager));
         }
 
-        public Employee CreateNewEmployee()
+        public void AddEmployee(Employee employee)
         {
-            var newEmployee = new Employee();
-            storage.Add(newEmployee);
-            return newEmployee;
+            storage.Add(employee);
         }
 
         public Employee GetEmployeeByID(int id)
         {
             return storage.GetStorageFor<Employee>().SingleOrDefault(e => e.ID == id);
-        }
-
-        public void AddEmployee(Employee employee)
-        {
-            storage.Add(employee);
         }
 
         public void AddRequest(HolidayRequest request)
