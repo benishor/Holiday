@@ -25,5 +25,10 @@ namespace Holiday
             Set<T>().Add(entity);
             SaveChanges();
         }
+
+        public void Update<T>(T entity) where T : class
+        {
+            SaveChanges();
+        }
     }
 }

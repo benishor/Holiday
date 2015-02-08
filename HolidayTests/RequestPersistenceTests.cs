@@ -45,15 +45,17 @@ namespace HolidayTests
         }
 
         [Test]
-        public void my_requests_are_not_mixed_with_others()
+        public void different_employees_requests_are_not_mixed()
         {
-            var aUser = new Employee();
-            var request = new HolidayRequest(aUser, new Employee(), DateTime.Now, DateTime.Now);
+            var anEmployee = new Employee();
+            dal.AddEmployee(anEmployee);
+            var request = new HolidayRequest(anEmployee, new Employee(), DateTime.Now, DateTime.Now);
             dal.AddRequest(request);
-            var anotherUser = new Employee();
-            var anotherUsersRequests = dal.GetAllRequest(anotherUser).ToList();
+            var anotherEmployee = new Employee();
+            dal.AddEmployee(anotherEmployee);
+            var anotherEmployeesRequests = dal.GetAllRequest(anotherEmployee).ToList();
 
-            CollectionAssert.IsEmpty(anotherUsersRequests);
+            CollectionAssert.IsEmpty(anotherEmployeesRequests);
         }
 
         [Test]
@@ -74,7 +76,7 @@ namespace HolidayTests
             var manager = new Employee();
             var request = new HolidayRequest(employee, manager, DateTime.Now, DateTime.Now);
             dal.AddRequest(request);
-            request.Approve();
+            dal.ApproveRequest(request);
 
             var requestsWaitingApproval = dal.GetRequestsWaitingApproval(manager);
             CollectionAssert.IsEmpty(requestsWaitingApproval);
@@ -86,8 +88,10 @@ namespace HolidayTests
             var employee = new Employee();
             var manager = new Employee();
             var request = new HolidayRequest(employee, manager, DateTime.Now, DateTime.Now);
+            
+            // This is backwards. HolidayRequest.Reject should somehow trigger the dal update.
             dal.AddRequest(request);
-            request.Reject();
+            dal.RejectRequest(request);
 
             var requestsWaitingApproval = dal.GetRequestsWaitingApproval(manager);
             CollectionAssert.IsEmpty(requestsWaitingApproval);

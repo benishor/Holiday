@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Holiday;
 
 namespace HolidayTests
@@ -34,7 +35,29 @@ namespace HolidayTests
 
         public void Add<T>(T entity) where T : class
         {
-            GetListFor<T>().Add(entity);
+            var list = GetListFor<T>();
+            SetProperty(entity, "ID", list.Count() + 1);
+            list.Add(entity);
+        }
+
+        private void SetProperty(object entity, string propertyName, object value)
+        {
+            try
+            {
+                Type type = entity.GetType();
+                PropertyInfo property = type.GetProperty(propertyName);
+                property.SetValue(entity, value, null);
+            }
+            catch
+            {
+                // We don't have to do anything special here. 
+                // Tests should take care of the special cases instead of forcing every entity to have an ID field
+            }
+        }
+
+        public void Update<T>(T entity) where T : class
+        {
+            // nothing to do
         }
     }
 }

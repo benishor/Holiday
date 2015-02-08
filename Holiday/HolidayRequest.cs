@@ -2,6 +2,13 @@ using System;
 
 namespace Holiday
 {
+    public enum Status
+    {
+        Pending,
+        Approved,
+        Rejected
+    }
+
     public class HolidayRequest
     {
         public int ID { get; set; }
@@ -10,13 +17,7 @@ namespace Holiday
         public DateTime start { get; set; }
         public DateTime end { get; set; }
 
-        private enum Status
-        {
-            Pending,
-            Approved,
-            Rejected
-        }
-        private Status status;
+        public Status status { get; set; }
 
         public HolidayRequest()
         {
@@ -51,23 +52,6 @@ namespace Holiday
             status = Status.Rejected;
             var message = Message.RejectionMessage(employee, manager, start, end);
             message.Send();
-        }
-
-        public bool WasSubmittedBy(Employee anEmployee)
-        {
-            // TODO: is this the right way to cehck for employee equality?
-            return anEmployee == employee;
-        }
-
-        public bool IsWaitingApprovalBy(Employee aManager)
-        {
-            // TODO: request status
-            return IsWaitingApproval() && (aManager == manager);
-        }
-
-        private bool IsWaitingApproval()
-        {
-            return status == Status.Pending;
         }
     }
 }

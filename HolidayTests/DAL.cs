@@ -22,12 +22,12 @@ namespace HolidayTests
 
         public IEnumerable<HolidayRequest> GetAllRequest(Employee employee)
         {
-            return storage.GetStorageFor<HolidayRequest>().Where(r=>r.WasSubmittedBy(employee));
+            return storage.GetStorageFor<HolidayRequest>().Where(r=>r.employee.ID == employee.ID);
         }
 
         public IEnumerable<HolidayRequest> GetRequestsWaitingApproval(Employee manager)
         {
-            return storage.GetStorageFor<HolidayRequest>().Where(r => r.IsWaitingApprovalBy(manager));
+            return storage.GetStorageFor<HolidayRequest>().Where(r => (r.status == Status.Pending) && (r.manager.ID == manager.ID));
         }
 
         public void AddEmployee(Employee employee)
@@ -48,6 +48,18 @@ namespace HolidayTests
         public HolidayRequest GetRequestByID(int id)
         {
             return storage.GetStorageFor<HolidayRequest>().SingleOrDefault(r => r.ID == id);
+        }
+
+        public void ApproveRequest(HolidayRequest request)
+        {
+            request.Approve();
+            storage.Update(request);
+        }
+
+        public void RejectRequest(HolidayRequest request)
+        {
+            request.Reject();
+            storage.Update(request);
         }
     }
 }
