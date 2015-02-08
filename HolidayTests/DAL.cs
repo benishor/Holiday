@@ -7,7 +7,18 @@ namespace HolidayTests
 {
     public class DAL
     {
-        private readonly IStorage storage = new Storage();
+        private readonly IStorage storage;
+
+        public DAL()
+            :this(new Storage())
+        {
+            
+        }
+
+        public DAL(IStorage storage)
+        {
+            this.storage = storage;
+        }
 
         public HolidayRequest CreateNewRequest(Employee employee, Employee manager, DateTime start, DateTime end)
         {
@@ -31,6 +42,11 @@ namespace HolidayTests
             var newEmployee = new Employee();
             storage.Add<Employee>(newEmployee);
             return newEmployee;
+        }
+
+        public Employee GetEmployeeByID(int id)
+        {
+            return storage.GetStorageFor<Employee>().SingleOrDefault(e => e.ID == id);
         }
     }
 }
