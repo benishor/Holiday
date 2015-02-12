@@ -27,6 +27,8 @@ namespace HolidayTests
         public void usage()
         {
             var request = new HolidayRequest(new Employee(), new Employee(), DateTime.Now, DateTime.Now);
+
+            // CR: why not request.save()? It seems like you break the consistency of a holiday request's usage
             dal.AddRequest(request);
             request.Approve(); // maybe dal.ApproveRequest()
             request.Reject(); // maybe dal.RejectRequest()

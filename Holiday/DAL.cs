@@ -42,6 +42,10 @@ namespace Holiday
             return storage.GetStorageFor<HolidayRequest>().SingleOrDefault(r => r.ID == id);
         }
 
+        // CR: I'm not sure about separating persistence from the object behaviour. 
+        // I mean, if the request is responsible for actually sending the email messages why is not also responsible for
+        // saving its state when submitting/approving/rejecting? Where do we draw the line? I don't necessarily consider this
+        // a problem but a question worth discussing.
         public void ApproveRequest(HolidayRequest request)
         {
             request.Approve();
